@@ -155,143 +155,92 @@ export default function StakePoolInfo({ onBack }: StakePoolInfoProps) {
       </div>
 
       {/* Statistics */}
+      {/* Statistics */}
       <div>
         <h3 className="font-semibold mb-4">Statistics:</h3>
 
-        {/* Mobile Layout - 3 columns */}
-        <div className="lg:hidden space-y-4">
-          {/* Row 1: Saturation, Fees, Pledge */}
-          <div className="grid grid-cols-3 gap-4">
-            <div>
-              <p className="text-xs text-gray-600 mb-1">Saturation:</p>
-              <div className="flex items-center gap-1">
-                <div className="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-gray-800"
-                    style={{ width: "70%" }}
-                  />
-                </div>
-                <span className="text-xs">70%</span>
-              </div>
-            </div>
-            <div>
-              <p className="text-xs text-gray-600 mb-1">Fees</p>
-              <p className="text-sm font-medium">20ADA</p>
-            </div>
-            <div>
-              <p className="text-xs text-gray-600 mb-1">Pledge</p>
-              <p className="text-sm font-medium">500.36K</p>
-            </div>
-          </div>
-
-          {/* Row 2: Returns Of Stake, Active Stakes, Live Stake */}
-          <div className="grid grid-cols-3 gap-4">
-            <div>
-              <p className="text-xs text-gray-600 mb-1">Returns Of Stake</p>
-              <p className="text-sm font-medium">10%</p>
-            </div>
-            <div>
-              <p className="text-xs text-gray-600 mb-1">Active Stakes</p>
-              <p className="text-sm font-medium">160.27K</p>
-            </div>
-            <div>
-              <p className="text-xs text-gray-600 mb-1">Live Stake</p>
-              <p className="text-sm font-medium">159.19K</p>
-            </div>
-          </div>
-
-          {/* Row 3: Estimated ROS, Delegators, Block */}
-          <div className="grid grid-cols-3 gap-4">
-            <div>
-              <p className="text-xs text-gray-600 mb-1">Estimated ROS</p>
-              <p className="text-sm font-medium">4.18%</p>
-            </div>
-            <div>
-              <p className="text-xs text-gray-600 mb-1">Delegators</p>
-              <p className="text-sm font-medium">19</p>
-            </div>
-            <div>
-              <p className="text-xs text-gray-600 mb-1">Block</p>
-              <p className="text-sm font-medium">63</p>
-            </div>
-          </div>
-
-          {/* Row 4: Cost p/ epoch, Pool margin, Pledge */}
-          <div className="grid grid-cols-3 gap-4">
-            <div>
-              <p className="text-xs text-gray-600 mb-1">Cost p/ epoch</p>
-              <p className="text-sm font-medium">170</p>
-            </div>
-            <div>
-              <p className="text-xs text-gray-600 mb-1">Pool margin</p>
-              <p className="text-sm font-medium">1.00%</p>
-            </div>
-            <div>
-              <p className="text-xs text-gray-600 mb-1">Pledge</p>
-              <p className="text-sm font-medium">25.01K</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Desktop Layout - Original */}
-        <div className="hidden lg:block">
-          <div className="mb-6">
+        {/* One grid for all breakpoints:
+      - 2 cols on very small
+      - 3 cols on small/medium
+      - 6 cols on large+  */}
+        <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+          {/* Saturation (bar + percent, both inside one cell) */}
+          <div className="space-y-1">
+            <p className="text-xs sm:text-sm text-gray-600">Saturation</p>
             <div className="flex items-center gap-2">
               <div className="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
                 <div className="h-full bg-gray-800" style={{ width: "70%" }} />
               </div>
-              <span className="text-[16px]">70%</span>
+              <span className="text-xs sm:text-sm font-medium">70%</span>
             </div>
           </div>
 
-          <div className="grid grid-cols-5 gap-6 mb-6">
-            <div>
-              <p className="text-[16px] text-gray-600 mb-1">Fees</p>
-              <p className="text-[16px] font-medium">20ADA</p>
-            </div>
-            <div>
-              <p className="text-[16px] text-gray-600 mb-1">Pledge</p>
-              <p className="text-[16px] font-medium">500.36K</p>
-            </div>
-            <div>
-              <p className="text-[16px] text-gray-600 mb-1">Returns Of Stake</p>
-              <p className="text-[16px] font-light">10%</p>
-            </div>
-            <div>
-              <p className="text-[16px] text-gray-600 mb-1">Active Stakes</p>
-              <p className="text-[16px] font-medium">160.27K</p>
-            </div>
-            <div>
-              <p className="text-[16px] text-gray-600 mb-1">Live Stake</p>
-              <p className="text-[16px] font-medium">159.19K</p>
-            </div>
+          {/* Fees */}
+          <div className="space-y-1">
+            <p className="text-xs sm:text-sm text-gray-600">Fees</p>
+            <p className="text-sm sm:text-base font-medium">20ADA</p>
           </div>
 
-          <div className="grid grid-cols-6 gap-6">
-            <div>
-              <p className="text-[16px] text-gray-600 mb-1">Estimated ROS</p>
-              <p className="text-[16px] font-medium">4.18%</p>
-            </div>
-            <div>
-              <p className="text-[16px] text-gray-600 mb-1">Delegators</p>
-              <p className="text-[16px] font-medium">19</p>
-            </div>
-            <div>
-              <p className="text-[16px] text-gray-600 mb-1">Block</p>
-              <p className="text-[16px] font-medium">63</p>
-            </div>
-            <div>
-              <p className="text-[16px] text-gray-600 mb-1">Cost p/ epoch</p>
-              <p className="text-[16px] font-medium">170</p>
-            </div>
-            <div>
-              <p className="text-[16px] text-gray-600 mb-1">Pledge</p>
-              <p className="text-[16px] font-medium">25.01K</p>
-            </div>
-            <div>
-              <p className="text-[16px] text-gray-600 mb-1">Pool margin</p>
-              <p className="text-[16px] font-medium">1.00%</p>
-            </div>
+          {/* Pledge (top row value) */}
+          <div className="space-y-1">
+            <p className="text-xs sm:text-sm text-gray-600">Pledge</p>
+            <p className="text-sm sm:text-base font-medium">500.36K</p>
+          </div>
+
+          {/* Returns Of Stake */}
+          <div className="space-y-1">
+            <p className="text-xs sm:text-sm text-gray-600">Returns Of Stake</p>
+            <p className="text-sm sm:text-base font-medium">10%</p>
+          </div>
+
+          {/* Active Stakes */}
+          <div className="space-y-1">
+            <p className="text-xs sm:text-sm text-gray-600">Active Stakes</p>
+            <p className="text-sm sm:text-base font-medium">160.27K</p>
+          </div>
+
+          {/* Live Stake */}
+          <div className="space-y-1">
+            <p className="text-xs sm:text-sm text-gray-600">Live Stake</p>
+            <p className="text-sm sm:text-base font-medium">159.19K</p>
+          </div>
+
+          {/* Estimated ROS */}
+          <div className="space-y-1">
+            <p className="text-xs sm:text-sm text-gray-600">Estimated ROS</p>
+            <p className="text-sm sm:text-base font-medium">4.18%</p>
+          </div>
+
+          {/* Delegators */}
+          <div className="space-y-1">
+            <p className="text-xs sm:text-sm text-gray-600">Delegators</p>
+            <p className="text-sm sm:text-base font-medium">19</p>
+          </div>
+
+          {/* Block */}
+          <div className="space-y-1">
+            <p className="text-xs sm:text-sm text-gray-600">Block</p>
+            <p className="text-sm sm:text-base font-medium">63</p>
+          </div>
+
+          {/* Cost p/ epoch */}
+          <div className="space-y-1">
+            <p className="text-xs sm:text-sm text-gray-600">Cost p/ epoch</p>
+            <p className="text-sm sm:text-base font-medium">170</p>
+          </div>
+
+          {/* Pledge (second value if you need both shown) */}
+          <div className="space-y-1">
+            <p className="text-xs sm:text-sm text-gray-600">
+              Pledge (effective)
+            </p>
+            <p className="text-sm sm:text-base font-medium">25.01K</p>
+          </div>
+
+          {/* Pool margin */}
+          <div className="space-y-1">
+            <p className="text-xs sm:text-sm text-gray-600">Pool margin</p>
+            <p className="text-sm sm:text-base font-medium">1.00%</p>
           </div>
         </div>
       </div>
