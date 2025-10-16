@@ -25,8 +25,9 @@ const Nav = () => {
   return (
     <div className="w-full py-3 text-black bg-kindred-primary relative">
       <nav className="mx-auto px-4 sm:px-6 lg:px-20 flex justify-between items-center">
-        <Image src={logo} alt="logo" width={90} height={30} />
-
+        <Link href="/">
+          <Image src={logo} alt="logo" width={90} height={30} />
+        </Link>
         <div className="hidden lg:block">
           <div className="flex justify-center items-center gap-6">
             <button
@@ -48,29 +49,17 @@ const Nav = () => {
 
         <button
           onClick={toggleMenu}
-          className="lg:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5 z-50 relative"
+          className="lg:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1 z-50 relative"
           aria-label="Toggle menu"
         >
-          <span
-            className={`w-6 h-0.5 bg-black transition-all duration-300 ease-in-out ${
-              isMenuOpen ? "rotate-45 translate-y-2" : ""
-            }`}
-          />
-          <span
-            className={`w-6 h-0.5 bg-black transition-all duration-300 ease-in-out ${
-              isMenuOpen ? "opacity-0" : ""
-            }`}
-          />
-          <span
-            className={`w-6 h-0.5 bg-black transition-all duration-300 ease-in-out ${
-              isMenuOpen ? "-rotate-45 -translate-y-2" : ""
-            }`}
-          />
+          <span className="w-1.5 h-1.5 bg-black rounded-full" />
+          <span className="w-1.5 h-1.5 bg-black rounded-full" />
+          <span className="w-1.5 h-1.5 bg-black rounded-full" />
         </button>
       </nav>
 
       <div
-        className={`fixed inset-0 o bg-black/24   z-40 lg:hidden transition-opacity duration-300 ${
+        className={`fixed inset-0 bg-black/10 z-40 lg:hidden transition-opacity duration-300 ${
           isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
         onClick={closeMenu}
@@ -107,8 +96,6 @@ const Nav = () => {
           </div>
 
           <div className="flex-1 flex flex-col items-center justify-center px-6 py-6 space-y-5 overflow-y-auto">
-            <Image src={logo} alt="logo" width={90} height={30} />
-
             <Link
               href="#"
               onClick={closeMenu}

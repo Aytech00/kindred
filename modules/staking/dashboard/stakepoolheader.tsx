@@ -38,7 +38,7 @@ export default function StakePoolHeader({
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-10 mb-6 px-4 md:px-14 lg:px-24">
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-10 mb-6 px-4 md:px-14 lg:px-24">
         <div>
           <p className="text-gray-600 text-xs md:text-sm mb-1">Saturation:</p>
           <div className="flex items-center gap-2">

@@ -15,7 +15,7 @@ export default function StakePoolInfo({ onBack }: StakePoolInfoProps) {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 md:p-8">
       {/* Header with Back Button */}
       <div className="mb-6">
         <button
@@ -38,29 +38,30 @@ export default function StakePoolInfo({ onBack }: StakePoolInfoProps) {
           <span>Back</span>
         </button>
 
-        <div className="flex items-center justify-center gap-4">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Image src={logo} width={70} height={70} alt="logo" />
-
-          <h2 className="text-2xl font-semibold">KindredNodes Stake Pool</h2>
+          <h2 className="text-xl sm:text-2xl font-semibold text-center sm:text-left">
+            KindredNodes Stake Pool
+          </h2>
         </div>
       </div>
 
       <div className="mb-8">
         <h3 className="font-semibold mb-3">Information:</h3>
-        <p className="text-[16px] text-gray-700 mb-4">
+        <p className="text-sm sm:text-[16px] text-gray-700 mb-4">
           🤝 Community-Centric & Ethos-Aligned
         </p>
-        <p className="text-sm text-[16px] text-gray-700 mb-4">
+        <p className="text-sm sm:text-[16px] text-gray-700 mb-4">
           "KindredNodes: Powering a sovereign web of trust, creativity, and
           collective intelligence. Stake with purpose."
         </p>
 
         <div className="space-y-4">
           <div>
-            <p className="text-[16px] font-medium mb-1">
+            <p className="text-sm sm:text-[16px] font-medium mb-1">
               👤 Identity + Infrastructure Angle
             </p>
-            <p className="text-[16px] text-gray-600">
+            <p className="text-sm sm:text-[16px] text-gray-600">
               "Stake with KindredNodes: Secure the Cardano network. Fuel the
               infrastructure for self-sovereign identity and decentralized
               kinship."
@@ -68,36 +69,40 @@ export default function StakePoolInfo({ onBack }: StakePoolInfoProps) {
           </div>
 
           <div>
-            <p className="text-[16px] font-medium mb-1">🤝 Kinship-Driven</p>
-            <p className="text-[16px] text-gray-600">
+            <p className="text-sm sm:text-[16px] font-medium mb-1">
+              🤝 Kinship-Driven
+            </p>
+            <p className="text-sm sm:text-[16px] text-gray-600">
               "Stake with KindredNodes: Where every block builds belonging.
               Support the network. Strengthen your kin."
             </p>
           </div>
 
           <div>
-            <p className="text-[16px] font-medium mb-1">
+            <p className="text-sm sm:text-[16px] font-medium mb-1">
               🔮 Minimalist + Visionary
             </p>
-            <p className="text-[16px] text-gray-600">
+            <p className="text-sm sm:text-[16px] text-gray-600">
               "Stake with KindredNodes: Stake to sustain a more organized,
               sovereign, and meaningful digital future."
             </p>
           </div>
 
           <div>
-            <p className="text-[16px] font-medium mb-1">🔨 Builder Vibe</p>
-            <p className="text-[16px] text-gray-600">
+            <p className="text-sm sm:text-[16px] font-medium mb-1">
+              🔨 Builder Vibe
+            </p>
+            <p className="text-sm sm:text-[16px] text-gray-600">
               "KindredNodes: Supporting the architecture behind next-gen
               identity, matching, and human systems. Join the build."
             </p>
           </div>
 
           <div>
-            <p className="text-[16px] font-medium mb-1">
+            <p className="text-sm sm:text-[16px] font-medium mb-1">
               💜 Direct & Compelling
             </p>
-            <p className="text-[16px] text-gray-600">
+            <p className="text-sm sm:text-[16px] text-gray-600">
               "Stake with KindredNodes—supporting the ecosystem behind a new
               kind of human network. Every block matters."
             </p>
@@ -106,10 +111,10 @@ export default function StakePoolInfo({ onBack }: StakePoolInfoProps) {
       </div>
 
       <div className="mb-6">
-        <p className="text-[16px] text-gray-600 mb-2">Pool ID:</p>
+        <p className="text-sm sm:text-[16px] text-gray-600 mb-2">Pool ID:</p>
         <div className="flex items-center justify-between gap-2 bg-gray-50 p-3 rounded border border-gray-200">
           <div className="text-left">
-            <p className="text-[16px] font-mono flex-1 break-all">
+            <p className="text-xs sm:text-[16px] font-mono flex-1 break-all">
               pool1hydgzxw3emsfcw4f8wgyfzz28agvm6c3aaarce7egjcd8289
               <br />
               ftdfx9x08csa04e6e70c25d559dd091f6312947ea19b2e22644f3
@@ -121,7 +126,7 @@ export default function StakePoolInfo({ onBack }: StakePoolInfoProps) {
                 "pool1hydgzxw3emsfcw4f8wgyfzz28agvm6c3aaarce7egjftdfx9x08csa04e6e70c25d559dd091f6312947ea19b2e22644f3cd8289"
               )
             }
-            className="p-2 hover:bg-gray-200 rounded"
+            className="p-2 hover:bg-gray-200 rounded flex-shrink-0"
           >
             <Copy className="w-4 h-4" />
           </button>
@@ -129,9 +134,11 @@ export default function StakePoolInfo({ onBack }: StakePoolInfoProps) {
       </div>
 
       <div className="mb-8">
-        <p className="text-[16px] text-gray-600 mb-2 font-semibold">Owner:</p>
+        <p className="text-sm sm:text-[16px] text-gray-600 mb-2 font-semibold">
+          Owner:
+        </p>
         <div className="flex items-center gap-2 bg-gray-50 p-3 rounded border border-gray-200">
-          <p className="text-[16px] font-mono flex-1 break-all">
+          <p className="text-xs sm:text-[16px] font-mono flex-1 break-all">
             stake1uy49g8vgkn3207ye8kmah5z9gc5mqafg5u7fcstthrp5cd29n5
           </p>
           <button
@@ -140,7 +147,7 @@ export default function StakePoolInfo({ onBack }: StakePoolInfoProps) {
                 "stake1uy49g8vgkn3207ye8kmah5z9gc5mqafg5u7fcstthrp5cd29n5"
               )
             }
-            className="p-2 hover:bg-gray-200 rounded"
+            className="p-2 hover:bg-gray-200 rounded flex-shrink-0"
           >
             <Copy className="w-4 h-4" />
           </button>
@@ -150,55 +157,141 @@ export default function StakePoolInfo({ onBack }: StakePoolInfoProps) {
       {/* Statistics */}
       <div>
         <h3 className="font-semibold mb-4">Statistics:</h3>
-        <div className="grid grid-cols-5 gap-6 mb-6">
-          <div className="flex items-center gap-2">
-            <div className="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
-              <div className="h-full bg-gray-800" style={{ width: "70%" }} />
+
+        {/* Mobile Layout - 3 columns */}
+        <div className="lg:hidden space-y-4">
+          {/* Row 1: Saturation, Fees, Pledge */}
+          <div className="grid grid-cols-3 gap-4">
+            <div>
+              <p className="text-xs text-gray-600 mb-1">Saturation:</p>
+              <div className="flex items-center gap-1">
+                <div className="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-gray-800"
+                    style={{ width: "70%" }}
+                  />
+                </div>
+                <span className="text-xs">70%</span>
+              </div>
             </div>
-            <span className="text-[16px]  ">70%</span>
+            <div>
+              <p className="text-xs text-gray-600 mb-1">Fees</p>
+              <p className="text-sm font-medium">20ADA</p>
+            </div>
+            <div>
+              <p className="text-xs text-gray-600 mb-1">Pledge</p>
+              <p className="text-sm font-medium">500.36K</p>
+            </div>
           </div>
-          <div>
-            <p className="text-[16px] text-gray-600 mb-1">Fees</p>
-            <p className="text-[16px]">20ADA</p>
+
+          {/* Row 2: Returns Of Stake, Active Stakes, Live Stake */}
+          <div className="grid grid-cols-3 gap-4">
+            <div>
+              <p className="text-xs text-gray-600 mb-1">Returns Of Stake</p>
+              <p className="text-sm font-medium">10%</p>
+            </div>
+            <div>
+              <p className="text-xs text-gray-600 mb-1">Active Stakes</p>
+              <p className="text-sm font-medium">160.27K</p>
+            </div>
+            <div>
+              <p className="text-xs text-gray-600 mb-1">Live Stake</p>
+              <p className="text-sm font-medium">159.19K</p>
+            </div>
           </div>
-          <div>
-            <p className="text-[16px] text-gray-600 mb-1">Pledge</p>
-            <p className=" text-[16px]">500.36K</p>
+
+          {/* Row 3: Estimated ROS, Delegators, Block */}
+          <div className="grid grid-cols-3 gap-4">
+            <div>
+              <p className="text-xs text-gray-600 mb-1">Estimated ROS</p>
+              <p className="text-sm font-medium">4.18%</p>
+            </div>
+            <div>
+              <p className="text-xs text-gray-600 mb-1">Delegators</p>
+              <p className="text-sm font-medium">19</p>
+            </div>
+            <div>
+              <p className="text-xs text-gray-600 mb-1">Block</p>
+              <p className="text-sm font-medium">63</p>
+            </div>
           </div>
-          <div>
-            <p className="text-[16px] text-gray-600 mb-1">Returns Of Stake</p>
-            <p className="font-light text-[16px]">10%</p>
-          </div>
-          <div>
-            <p className="text-[16px] text-gray-600 mb-1">Active Stakes</p>
-            <p className="text-[16px]">160.27K</p>
+
+          {/* Row 4: Cost p/ epoch, Pool margin, Pledge */}
+          <div className="grid grid-cols-3 gap-4">
+            <div>
+              <p className="text-xs text-gray-600 mb-1">Cost p/ epoch</p>
+              <p className="text-sm font-medium">170</p>
+            </div>
+            <div>
+              <p className="text-xs text-gray-600 mb-1">Pool margin</p>
+              <p className="text-sm font-medium">1.00%</p>
+            </div>
+            <div>
+              <p className="text-xs text-gray-600 mb-1">Pledge</p>
+              <p className="text-sm font-medium">25.01K</p>
+            </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-5 gap-6">
-          <div>
-            <p className="text-[16px] text-gray-600 mb-1">Estimated ROS</p>
-            <p className="text-[16px]">4.18%</p>
+        {/* Desktop Layout - Original */}
+        <div className="hidden lg:block">
+          <div className="mb-6">
+            <div className="flex items-center gap-2">
+              <div className="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
+                <div className="h-full bg-gray-800" style={{ width: "70%" }} />
+              </div>
+              <span className="text-[16px]">70%</span>
+            </div>
           </div>
-          <div>
-            <p className="text-[16px] text-gray-600 mb-1">Delegators</p>
-            <p className="text-[16px]">19</p>
+
+          <div className="grid grid-cols-5 gap-6 mb-6">
+            <div>
+              <p className="text-[16px] text-gray-600 mb-1">Fees</p>
+              <p className="text-[16px] font-medium">20ADA</p>
+            </div>
+            <div>
+              <p className="text-[16px] text-gray-600 mb-1">Pledge</p>
+              <p className="text-[16px] font-medium">500.36K</p>
+            </div>
+            <div>
+              <p className="text-[16px] text-gray-600 mb-1">Returns Of Stake</p>
+              <p className="text-[16px] font-light">10%</p>
+            </div>
+            <div>
+              <p className="text-[16px] text-gray-600 mb-1">Active Stakes</p>
+              <p className="text-[16px] font-medium">160.27K</p>
+            </div>
+            <div>
+              <p className="text-[16px] text-gray-600 mb-1">Live Stake</p>
+              <p className="text-[16px] font-medium">159.19K</p>
+            </div>
           </div>
-          <div>
-            <p className="text-[16px] text-gray-600 mb-1">Block</p>
-            <p className="text-[16px]">63</p>
-          </div>
-          <div>
-            <p className="text-[16px] text-gray-600 mb-1">Cost p/ epoch</p>
-            <p className="text-[16px]">170</p>
-          </div>
-          <div>
-            <p className="text-[16px] text-gray-600 mb-1">Pledge</p>
-            <p className="text-[16px]">25.01K</p>
-          </div>
-          <div>
-            <p className="text-[16px] text-gray-600 mb-1">Pool margin</p>
-            <p className="text-[16px]">1.00%</p>
+
+          <div className="grid grid-cols-6 gap-6">
+            <div>
+              <p className="text-[16px] text-gray-600 mb-1">Estimated ROS</p>
+              <p className="text-[16px] font-medium">4.18%</p>
+            </div>
+            <div>
+              <p className="text-[16px] text-gray-600 mb-1">Delegators</p>
+              <p className="text-[16px] font-medium">19</p>
+            </div>
+            <div>
+              <p className="text-[16px] text-gray-600 mb-1">Block</p>
+              <p className="text-[16px] font-medium">63</p>
+            </div>
+            <div>
+              <p className="text-[16px] text-gray-600 mb-1">Cost p/ epoch</p>
+              <p className="text-[16px] font-medium">170</p>
+            </div>
+            <div>
+              <p className="text-[16px] text-gray-600 mb-1">Pledge</p>
+              <p className="text-[16px] font-medium">25.01K</p>
+            </div>
+            <div>
+              <p className="text-[16px] text-gray-600 mb-1">Pool margin</p>
+              <p className="text-[16px] font-medium">1.00%</p>
+            </div>
           </div>
         </div>
       </div>
