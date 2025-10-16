@@ -16,7 +16,7 @@ export default function StakePoolHeader({
     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 md:p-6 mb-6 md:mb-8">
       <div className="mb-4 md:mb-6">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 md:gap-10">
-          <div className="flex items-center gap-3 md:gap-5">
+          <div className="flex items-center mx-auto gap-3 md:gap-5">
             <Image
               src={logo}
               width={0}
@@ -38,14 +38,14 @@ export default function StakePoolHeader({
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 mb-6 px-4 md:px-10 lg:px-20">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-10 mb-6 px-4 md:px-14 lg:px-24">
         <div>
           <p className="text-gray-600 text-xs md:text-sm mb-1">Saturation:</p>
           <div className="flex items-center gap-2">
             <div className="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
               <div className="h-full bg-gray-800" style={{ width: "70%" }} />
             </div>
-            <span className="font-semibold text-sm md:text-base">70%</span>
+            <span className="font-normal text-sm md:text-base">70%</span>
           </div>
         </div>
         <div>
@@ -62,7 +62,7 @@ export default function StakePoolHeader({
         </div>
       </div>
 
-      <p className="text-center text-gray-600 mb-4 md:mb-6 text-sm md:text-base px-4">
+      <p className="text-center text-gray-600 mb-4 md:mb-6 text-sm md:text-[16px] px-4">
         Making the most out of each coin staked.
       </p>
 

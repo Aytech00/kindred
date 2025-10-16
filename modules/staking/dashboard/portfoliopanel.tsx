@@ -11,34 +11,34 @@ export default function PortfolioPanel() {
   ];
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 md:p-6">
-      <h3 className="text-base md:text-lg font-medium mb-4 md:mb-6">
+    <div className="">
+      <h3 className="text-base hidden md:block md:text-lg font-medium mb-4 md:mb-6">
         Connected Wallet
       </h3>
 
       <div className="rounded-2xl border border-gray-200 p-4 md:p-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-x-8 md:gap-y-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-x-8 md:gap-y-8">
           <Metric label="Net Worth" value="$0.00" bold />
+          <Metric label="Farm positions worth" value="$0.00" bold />
           <Metric label="PnL (24hr)" value="$0.00" suffix="(0%)" bold />
+          <Metric label="Tokens positions worth" value="$0.00"  bold/>
           <Metric label="ADA value" value="$0.00" bold />
+          <Metric label="Staking positions worth" value="$0.00" bold />
           <Metric label="LP positions worth" value="$0.00" bold />
-          <Metric label="Farm positions worth" value="$0.00" />
-          <Metric label="Tokens positions worth" value="$0.00" />
-          <Metric label="Staking positions worth" value="$0.00" />
           <div className="hidden lg:block" />
         </div>
 
         <hr className="my-4 md:my-6 border-gray-200" />
 
         <div>
-          <div className="font-semibold text-gray-700 mb-2 text-sm md:text-base">
+          <div className="font-semibold text-black mb-2 text-sm md:text-base">
             Holdings (0 TOKENS)
           </div>
 
           <div className="hidden sm:block">
-            <div className="grid grid-cols-[1fr_auto_auto] gap-4 text-sm text-gray-600 px-1">
+            <div className="grid grid-cols-[1fr_1fr_1fr] gap-4 text-sm text-gray-600 px-1">
               <div className="font-medium">Tokens</div>
-              <div className="font-medium text-right">Total</div>
+              <div className="font-medium text-center">Total</div>
               <div className="font-medium text-right">Worth</div>
             </div>
 
@@ -46,10 +46,10 @@ export default function PortfolioPanel() {
               {holdings.map((h) => (
                 <div
                   key={h.token}
-                  className="grid grid-cols-[1fr_auto_auto] gap-4 items-center px-1 py-1"
+                  className="grid grid-cols-[1fr_1fr_1fr] gap-4 items-center px-1 py-1"
                 >
                   <div className="text-gray-900">{h.token}</div>
-                  <div className="text-right text-gray-900">{h.total}</div>
+                  <div className="text-center font-semibold text-gray-900">{h.total}</div>
                   <div className="text-right font-semibold">
                     $
                     {h.worth.toLocaleString(undefined, {
@@ -61,29 +61,31 @@ export default function PortfolioPanel() {
             </div>
           </div>
 
-          {/* Mobile Cards */}
-          <div className="sm:hidden space-y-3 mt-3">
-            {holdings.map((h) => (
-              <div
-                key={h.token}
-                className="bg-gray-50 rounded-lg p-3 space-y-1"
-              >
-                <div className="font-medium text-gray-900">{h.token}</div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">Total:</span>
-                  <span className="text-gray-900">{h.total}</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">Worth:</span>
-                  <span className="font-semibold">
+          {/* Mobile Table */}
+          <div className="sm:hidden">
+            <div className="grid grid-cols-[1fr_1fr_1fr] gap-4 text-sm text-gray-600 px-1">
+              <div className="font-medium">Tokens</div>
+              <div className="font-medium text-center">Total</div>
+              <div className="font-medium text-right">Worth</div>
+            </div>
+
+            <div className="mt-2 space-y-2">
+              {holdings.map((h) => (
+                <div
+                  key={h.token}
+                  className="grid grid-cols-[1fr_1fr_1fr] gap-4 items-center px-1 py-1"
+                >
+                  <div className="text-gray-900">{h.token}</div>
+                  <div className="text-center text-gray-900">{h.total}</div>
+                  <div className="text-right font-semibold">
                     $
                     {h.worth.toLocaleString(undefined, {
                       minimumFractionDigits: 2,
                     })}
-                  </span>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -127,7 +129,7 @@ function Metric({
 }) {
   return (
     <div>
-      <p className="text-gray-600 text-xs md:text-sm mb-1">{label}</p>
+      <p className="text-black text-xs md:text-sm mb-1">{label}</p>
       <div className="flex items-baseline gap-1 md:gap-2">
         <p
           className={`${

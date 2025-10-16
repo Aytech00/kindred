@@ -24,7 +24,7 @@ const Nav = () => {
 
   return (
     <div className="w-full py-3 text-black bg-kindred-primary relative">
-      <nav className="mx-auto px-4 sm:px-6 lg:px-14 flex justify-between items-center">
+      <nav className="mx-auto px-4 sm:px-6git  lg:px-20 flex justify-between items-center">
         <Image src={logo} alt="logo" width={90} height={30} />
 
         <div className="hidden lg:block">
