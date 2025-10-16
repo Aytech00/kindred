@@ -154,17 +154,11 @@ export default function StakePoolInfo({ onBack }: StakePoolInfoProps) {
         </div>
       </div>
 
-      {/* Statistics */}
-      {/* Statistics */}
       <div>
         <h3 className="font-semibold mb-4">Statistics:</h3>
 
-        {/* One grid for all breakpoints:
-      - 2 cols on very small
-      - 3 cols on small/medium
-      - 6 cols on large+  */}
+      
         <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-          {/* Saturation (bar + percent, both inside one cell) */}
           <div className="space-y-1">
             <p className="text-xs sm:text-sm text-gray-600">Saturation</p>
             <div className="flex items-center gap-2">

@@ -59,7 +59,7 @@ const Nav = () => {
       </nav>
 
       <div
-        className={`fixed inset-0 bg-black/10 z-40 lg:hidden transition-opacity duration-300 ${
+        className={`fixed inset-0 bg-black/32 z-40 lg:hidden transition-opacity duration-300 ${
           isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
         onClick={closeMenu}
@@ -96,6 +96,9 @@ const Nav = () => {
           </div>
 
           <div className="flex-1 flex flex-col items-center justify-center px-6 py-6 space-y-5 overflow-y-auto">
+            <Link href="/">
+              <Image src={logo} alt="logo" width={90} height={30} />
+            </Link>
             <Link
               href="#"
               onClick={closeMenu}
@@ -120,13 +123,13 @@ const Nav = () => {
               Support
             </button>
 
-            <div className="w-full max-w-xs pt-2">
+            <div className="w-full  max-w-xs pt-2">
               <CustomButton
                 onClick={() => {
                   handleOpenModal();
                   closeMenu();
                 }}
-                className="w-full"
+                className="w-[200px] mx-auto"
               >
                 Connect Wallet
               </CustomButton>
@@ -138,7 +141,7 @@ const Nav = () => {
                 className="text-gray-900 hover:text-gray-600 transition-colors"
               >
                 <svg
-                  className="w-6 h-6"
+                  className="w-4 h-4"
                   viewBox="0 0 24 24"
                   fill="currentColor"
                 >
@@ -149,13 +152,13 @@ const Nav = () => {
                 href="#"
                 className="text-gray-900 hover:text-gray-600 transition-colors"
               >
-                <Instagram className="w-6 h-6" />
+                <Instagram className="w-4 h-4" />
               </Link>
               <Link
                 href="#"
                 className="text-gray-900 hover:text-gray-600 transition-colors"
               >
-                <Facebook className="w-6 h-6" />
+                <Facebook className="w-4 h-4" />
               </Link>
             </div>
           </div>
