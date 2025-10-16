@@ -24,7 +24,7 @@ const Nav = () => {
 
   return (
     <div className="w-full py-3 text-black bg-kindred-primary relative">
-      <nav className="mx-auto px-4 sm:px-6git  lg:px-20 flex justify-between items-center">
+      <nav className="mx-auto px-4 sm:px-6 lg:px-20 flex justify-between items-center">
         <Image src={logo} alt="logo" width={90} height={30} />
 
         <div className="hidden lg:block">
@@ -70,20 +70,20 @@ const Nav = () => {
       </nav>
 
       <div
-        className={`fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden transition-opacity duration-300 ${
+        className={`fixed inset-0 o bg-black/24   z-40 lg:hidden transition-opacity duration-300 ${
           isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
         onClick={closeMenu}
       />
 
       <div
-        className={`fixed top-0 left-0 right-0 w-full bg-white z-50 lg:hidden transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 left-0 right-0 w-full bg-white rounded-b-3xl z-50 lg:hidden transform transition-transform duration-300 ease-in-out ${
           isMenuOpen ? "translate-y-0" : "-translate-y-full"
         }`}
-        style={{ height: "100vh", maxHeight: "100dvh" }}
+        style={{ maxHeight: "70vh" }}
       >
         <div className="flex flex-col h-full">
-          <div className="flex justify-between items-center p-6 border-b border-gray-200">
+          <div className="flex justify-between items-center p-4 border-b border-gray-200">
             <Image src={logo} alt="logo" width={60} height={60} />
             <button
               onClick={closeMenu}
@@ -106,18 +106,20 @@ const Nav = () => {
             </button>
           </div>
 
-          <div className="flex-1 flex flex-col items-center justify-center px-8 space-y-8">
+          <div className="flex-1 flex flex-col items-center justify-center px-6 py-6 space-y-5 overflow-y-auto">
+            <Image src={logo} alt="logo" width={90} height={30} />
+
             <Link
               href="#"
               onClick={closeMenu}
-              className="text-lg font-normal text-gray-900 hover:text-gray-600 transition-colors duration-200"
+              className="text-base font-normal text-gray-900 hover:text-gray-600 transition-colors duration-200"
             >
               Privacy Policy
             </Link>
             <Link
               href="#"
               onClick={closeMenu}
-              className="text-lg font-normal text-gray-900 hover:text-gray-600 transition-colors duration-200"
+              className="text-base font-normal text-gray-900 hover:text-gray-600 transition-colors duration-200"
             >
               Terms Of Use
             </Link>
@@ -126,12 +128,12 @@ const Nav = () => {
                 handleOpenSupportModal();
                 closeMenu();
               }}
-              className="text-lg font-normal text-gray-900 hover:text-gray-600 transition-colors duration-200"
+              className="text-base font-normal text-gray-900 hover:text-gray-600 transition-colors duration-200"
             >
               Support
             </button>
 
-            <div className="w-full max-w-xs pt-4">
+            <div className="w-full max-w-xs pt-2">
               <CustomButton
                 onClick={() => {
                   handleOpenModal();
@@ -143,7 +145,7 @@ const Nav = () => {
               </CustomButton>
             </div>
 
-            <div className="flex items-center gap-6 pt-4">
+            <div className="flex items-center gap-6 pt-2">
               <Link
                 href="#"
                 className="text-gray-900 hover:text-gray-600 transition-colors"

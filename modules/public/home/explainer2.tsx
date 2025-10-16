@@ -7,8 +7,7 @@ import React from "react";
 export default function Explainer2() {
   return (
     <section className="py-24 px-6 md:px-10 overflow-x-hidden">
-      {/* hero copy */}
-      <div className="md:max-w-2xl mx-auto mb-20 sm:mb-16 md:mb-32">
+      <div className="px-4 md:max-w-2xl mx-auto mb-20 sm:mb-16 md:mb-32">
         <h1 className="leading-tight mb-3 text-2xl md:text-4xl text-center font-medium text-kindred-text">
           More Than Staking: The Ecosystem Ahead
         </h1>
