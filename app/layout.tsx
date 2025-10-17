@@ -4,7 +4,7 @@ import { Geist, Geist_Mono, Manrope, Outfit } from "next/font/google";
 import "./globals.css";
 import { LayoutContextProvider } from "@/context/layoutcontext";
 import NextAuthProvider from "@/ui/custom/NextAuthProvider";
-import ReactQueryProvider from "@/modules/querywrap";
+import ReactQueryProvider from "@/ui/custom/querywrap";
 import { Toaster } from "@/ui/toaster";
 import ModalContextProvider from "@/context/modalcontext";
 import ComingSoonModal from "@/ui/custom/comingsoon/comingsoonmodal";

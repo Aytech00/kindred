@@ -21,7 +21,7 @@ export default function PortfolioPanel() {
           <Metric label="Net Worth" value="$0.00" bold />
           <Metric label="Farm positions worth" value="$0.00" bold />
           <Metric label="PnL (24hr)" value="$0.00" suffix="(0%)" bold />
-          <Metric label="Tokens positions worth" value="$0.00"  bold/>
+          <Metric label="Tokens positions worth" value="$0.00" bold />
           <Metric label="ADA value" value="$0.00" bold />
           <Metric label="Staking positions worth" value="$0.00" bold />
           <Metric label="LP positions worth" value="$0.00" bold />
@@ -36,21 +36,23 @@ export default function PortfolioPanel() {
           </div>
 
           <div className="hidden sm:block">
-            <div className="grid grid-cols-[1fr_1fr_1fr] gap-4 text-sm text-gray-600 px-1">
+            <div className="grid grid-cols-3 gap-4 text-sm text-gray-600 px-1">
               <div className="font-medium">Tokens</div>
-              <div className="font-medium text-center">Total</div>
-              <div className="font-medium text-right">Worth</div>
+              <div className="font-medium text-left">Total</div>
+              <div className="font-medium text-left">Worth</div>
             </div>
 
             <div className="mt-2 space-y-2">
               {holdings.map((h) => (
                 <div
                   key={h.token}
-                  className="grid grid-cols-[1fr_1fr_1fr] gap-4 items-center px-1 py-1"
+                  className="grid grid-cols-3 gap-4 items-center px-1 py-1"
                 >
-                  <div className="text-gray-900">{h.token}</div>
-                  <div className="text-center font-semibold text-gray-900">{h.total}</div>
-                  <div className="text-right font-semibold">
+                  <div className="text-gray-900 font-semibold">{h.token}</div>
+                  <div className="text-left font-semibold text-gray-900">
+                    {h.total}
+                  </div>
+                  <div className="text-left font-semibold">
                     $
                     {h.worth.toLocaleString(undefined, {
                       minimumFractionDigits: 2,
@@ -75,7 +77,7 @@ export default function PortfolioPanel() {
                   key={h.token}
                   className="grid grid-cols-[1fr_1fr_1fr] gap-4 items-center px-1 py-1"
                 >
-                  <div className="text-gray-900">{h.token}</div>
+                  <div className="text-gray-900 !font-semibold">{h.token}</div>
                   <div className="text-center text-gray-900">{h.total}</div>
                   <div className="text-right font-semibold">
                     $

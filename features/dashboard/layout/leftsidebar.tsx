@@ -3,7 +3,7 @@ import React from 'react'
 import circles from "../../../public/circles.png"
 export default function LeftSideBar() {
   return (
-    <aside className="w-60 hidden md:block bg-kindred-secondary border-r border-gray-200 flex flex-col">
+    <aside className="w-60 hidden md:block mt-8 bg-kindred-secondary border-r border-gray-200 flex flex-col">
    
       <div className="flex justify-center ">
         <Image src={circles} width={70} height={70} alt='circle' />

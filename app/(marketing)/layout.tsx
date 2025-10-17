@@ -1,7 +1,7 @@
 /** @format */
 
-import Footer from "@/modules/public/layouts/footer";
-import Nav from "@/modules/public/layouts/nav";
+import Footer from "@/features/home/layouts/footer";
+import Nav from "@/features/home/layouts/nav";
 import { Toaster } from "@/ui/sonner";
 
 export default function PublicLayout({

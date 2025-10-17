@@ -1,7 +1,7 @@
 /** @format */
 
-import LeftSideBar from "@/modules/staking/layout/leftsidebar";
-import RightSideBar from "@/modules/staking/layout/rightsidebar";
+import LeftSideBar from "@/features/dashboard/layout/leftsidebar";
+import RightSideBar from "@/features/dashboard/layout/rightsidebar";
 
 export default function AuthenticatedLayout({
   children,

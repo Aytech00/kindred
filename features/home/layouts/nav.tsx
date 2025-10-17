@@ -76,11 +76,11 @@ const Nav = () => {
             <Image src={logo} alt="logo" width={60} height={60} />
             <button
               onClick={closeMenu}
-              className="text-gray-600 hover:text-gray-900 transition-colors duration-200"
+              className="text-gray-600 border p-1 rounded-full hover:text-gray-900 transition-colors duration-200"
               aria-label="Close menu"
             >
               <svg
-                className="w-6 h-6"
+                className="w-4 h-4"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -95,7 +95,7 @@ const Nav = () => {
             </button>
           </div>
 
-          <div className="flex-1 flex flex-col items-center justify-center px-6 py-6 space-y-5 overflow-y-auto">
+          <div className="flex-1 flex flex-col items-center justify-center px-6 py-6 space-y-6 overflow-y-auto">
             <Link href="/">
               <Image src={logo} alt="logo" width={90} height={30} />
             </Link>
