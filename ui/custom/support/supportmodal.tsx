@@ -30,7 +30,7 @@ export default function SupportModal() {
             </button>
             <button
               onClick={() => setTab("contact")}
-              className={`px-3 sm:px-4 py-2 cursor-pointer text-xs sm:text-sm font-medium rounded ${
+              className={`px-3 sm:px-4 py-2 cursor-pointer text-xs sm:text-sm font-medium  ${
                 tab === "contact"
                   ? "bg-black text-white"
                   : "bg-gray-100 text-gray-900 hover:bg-gray-200"
