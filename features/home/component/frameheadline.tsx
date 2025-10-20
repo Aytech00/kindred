@@ -50,14 +50,14 @@ export default function FramedHeadlineSection({
 
   const circlePos =
     circlePosition === "top"
-      ? "top-[5rem] right-[-3rem] md:top-[2rem] md:right-[0rem]"
+      ? "top-[5rem] right-[-0rem] md:top-[2rem] md:right-[0rem]"
       : "bottom-[20rem] left-[-3rem] md:bottom-[10rem] md:left-[2rem]";
 
   return (
     <section
       className={cx(
         "relative",
-        "bg-kindred-primary   text-neutral-900",
+        "bg-kindred-primary    text-neutral-900",
         className
       )}
     >
