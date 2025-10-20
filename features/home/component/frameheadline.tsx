@@ -101,7 +101,7 @@ export default function FramedHeadlineSection({
             <div className="md:col-span-7 mt-20 md:col-start-6">
               <div className="relative inline-block">
                 <span className="pointer-events-none absolute -left-2 -top-1 h-4 w-4 border-l-[2.5px] border-t-[2.5px] border-neutral-900/80" />
-                <span className="pointer-events-none absolute -bottom-2 hidden sm:block -right-16 sm:-right-80 sm:-bottom-2 h-4 w-4 border-b-[2.5px] border-r-[2.5px] border-neutral-900/80" />
+                <span className="pointer-events-none absolute -bottom-2 hidden sm:block -right-16 sm:-right-80 sm:-bottom-42 h-4 w-4 border-b-[2.5px] border-r-[2.5px] border-neutral-900/80" />
 
                 <motion.h2
                   initial={{ opacity: 0, y: 12 }}
