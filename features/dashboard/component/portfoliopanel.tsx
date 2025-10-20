@@ -36,7 +36,7 @@ export default function PortfolioPanel() {
           </div>
 
           <div className="hidden sm:block">
-            <div className="grid grid-cols-3 gap-4 text-sm text-gray-600 px-1">
+            <div className="grid grid-cols-3 md:gap-x-64 text-sm text-gray-600 px-1">
               <div className="font-medium">Tokens</div>
               <div className="font-medium text-left">Total</div>
               <div className="font-medium text-left">Worth</div>
@@ -46,7 +46,7 @@ export default function PortfolioPanel() {
               {holdings.map((h) => (
                 <div
                   key={h.token}
-                  className="grid grid-cols-3 gap-4 items-center px-1 py-1"
+                  className="grid grid-cols-3 md:gap-x-64 items-center px-1 py-1"
                 >
                   <div className="text-gray-900 font-semibold">{h.token}</div>
                   <div className="text-left font-semibold text-gray-900">

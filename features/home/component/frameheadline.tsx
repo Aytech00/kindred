@@ -12,8 +12,9 @@ export interface HeadlineProps {
   title: string;
   showButton?: boolean;
   buttonLabel?: string;
+
   buttonHref?: string;
-  buttonTargetBlank?: boolean
+  buttonTargetBlank?: boolean;
 
   lead?: string | React.ReactNode;
   body?: string | React.ReactNode;
@@ -49,14 +50,14 @@ export default function FramedHeadlineSection({
 
   const circlePos =
     circlePosition === "top"
-      ? "top-[-4rem] right-[-6rem] md:top-[2rem] md:-right-[1rem]"
-      : "bottom-[-6rem] left-[-6rem] md:bottom-[20rem] md:right-[-10rem]";
+      ? "top-[5rem] right-[-3rem] md:top-[2rem] md:right-[0rem]"
+      : "bottom-[20rem] left-[-3rem] md:bottom-[10rem] md:left-[2rem]";
 
   return (
     <section
       className={cx(
-        "relative ",
-        "bg-kindred-primary text-neutral-900",
+        "relative",
+        "bg-kindred-primary   text-neutral-900",
         className
       )}
     >
@@ -81,7 +82,7 @@ export default function FramedHeadlineSection({
 
       <div className="relative z-10">
         {" "}
-        <div className="mx-auto max-w-7xl px-6 py-14 sm:py-24 md:py-36">
+        <div className="mx-auto max-w-7xl px-6 py-14 sm:py-24 md:py-20">
           <div className="grid grid-cols-1 items-start gap-y-5 md:grid-cols-12 md:gap-12">
             <div className="md:col-span-4">
               {eyebrow && (
@@ -99,9 +100,8 @@ export default function FramedHeadlineSection({
 
             <div className="md:col-span-7 md:col-start-6">
               <div className="relative inline-block">
-                {/* frame corners */}
                 <span className="pointer-events-none absolute -left-2 -top-1 h-4 w-4 border-l-[2.5px] border-t-[2.5px] border-neutral-900/80" />
-                <span className="pointer-events-none absolute -bottom-40 hidden sm:block -right-16 sm:-right-80 sm:-bottom-28 h-4 w-4 border-b-[2.5px] border-r-[2.5px] border-neutral-900/80" />
+                <span className="pointer-events-none absolute -bottom-2 hidden sm:block -right-16 sm:-right-80 sm:-bottom-2 h-4 w-4 border-b-[2.5px] border-r-[2.5px] border-neutral-900/80" />
 
                 <motion.h2
                   initial={{ opacity: 0, y: 12 }}

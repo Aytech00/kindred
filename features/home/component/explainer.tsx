@@ -12,8 +12,6 @@ export interface ExplainerItem {
   className?: string;
   showCircle?: boolean;
   circlePosition?: "top" | "bottom";
-
-  // CTA
   showButton?: boolean;
   buttonLabel?: string;
   buttonHref?: string;
@@ -31,11 +29,11 @@ const cx = (...arr: Array<string | false | null | undefined>): string =>
 
 export default function Explainer({
   items = [],
-  gapY = "py-20",
+  gapY = "py-24",
   className,
 }: ExplainerProps): JSX.Element {
   return (
-    <div className={cx("w-full mb-5", className)}>
+    <div className={cx("w-full  mb-5", className)}>
       {items.map((it, i) => (
         <FramedHeadlineSection
           key={i}
@@ -47,7 +45,6 @@ export default function Explainer({
           className={cx(gapY, it.className)}
           showCircle={it.showCircle}
           circlePosition={it.circlePosition}
-          // ✅ pass CTA props through
           showButton={it.showButton}
           buttonLabel={it.buttonLabel}
           buttonHref={it.buttonHref}
@@ -58,7 +55,6 @@ export default function Explainer({
   );
 }
 
-// Example data
 export const STAKING_SECTIONS: ReadonlyArray<ExplainerItem> = [
   {
     eyebrow: "What is Staking?",
@@ -66,6 +62,7 @@ export const STAKING_SECTIONS: ReadonlyArray<ExplainerItem> = [
     body: "Staking means locking your tokens to support the network and, in return, earning rewards. It's like putting your money to work — strengthening the ecosystem while growing your balance.",
     showCircle: true,
     circlePosition: "top",
+    
   },
   {
     eyebrow: "Why Stake with KindredNodes?",
@@ -95,9 +92,8 @@ export const STAKING_SECTIONS: ReadonlyArray<ExplainerItem> = [
       "Start earning instantly.",
     ],
     circlePosition: "bottom",
-    // ✅ CTA visible on this section
     showButton: true,
     buttonLabel: "Start Staking",
-    buttonHref: "/staking",
+    buttonHref: "/dashboard",
   },
 ];
