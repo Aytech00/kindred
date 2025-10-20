@@ -91,14 +91,14 @@ export default function FramedHeadlineSection({
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, ease: "easeOut" }}
                   viewport={{ once: true, margin: "-40px" }}
-                  className="text-[16px] font-medium tracking-wide text-kindred-text md:pt-2"
+                  className="text-[16px]  font-medium tracking-wide text-kindred-text md:pt-2"
                 >
                   {eyebrow}
                 </motion.p>
               )}
             </div>
 
-            <div className="md:col-span-7 md:col-start-6">
+            <div className="md:col-span-7 mt-20 md:col-start-6">
               <div className="relative inline-block">
                 <span className="pointer-events-none absolute -left-2 -top-1 h-4 w-4 border-l-[2.5px] border-t-[2.5px] border-neutral-900/80" />
                 <span className="pointer-events-none absolute -bottom-2 hidden sm:block -right-16 sm:-right-80 sm:-bottom-2 h-4 w-4 border-b-[2.5px] border-r-[2.5px] border-neutral-900/80" />
@@ -115,7 +115,7 @@ export default function FramedHeadlineSection({
               </div>
 
               {(lead || body) && (
-                <div className="max-w-[620px] space-y-3 mb-4">
+                <div className="max-w-[620px]  space-y-3 mb-4">
                   {lead && (
                     <motion.h4
                       className="text-[18px] font-medium"
