@@ -48,9 +48,7 @@ const Nav = () => {
                   open("wallet");
                 }}
               >
-                {
-                  connected && shortAddress ? shortAddress : "Connect wallet"
-               }
+                {connected && shortAddress ? shortAddress : "Connect wallet"}
               </CustomButton>
             </div>
           </div>
@@ -141,7 +139,7 @@ const Nav = () => {
                 }}
                 className="w-[200px] mx-auto"
               >
-                Connect Wallet
+                {connected && shortAddress ? shortAddress : "Connect wallet"}
               </CustomButton>
             </div>
 
