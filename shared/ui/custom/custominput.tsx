@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { forwardRef } from "react";
-import { Input } from "@/ui/input";
+import { Input } from "@/shared/ui/input";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 
 interface CustomInputProps extends React.InputHTMLAttributes<HTMLInputElement> {

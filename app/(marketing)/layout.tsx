@@ -1,8 +1,8 @@
 /** @format */
 
-import Footer from "@/features/home/layouts/footer";
-import Nav from "@/features/home/layouts/nav";
-import { Toaster } from "@/ui/sonner";
+import Footer from "@/shared/layouts/footer";
+import Nav from "@/shared/layouts/nav";
+import { Toaster } from "@/shared/ui/sonner";
 
 export default function PublicLayout({
   children,

@@ -1,54 +1,53 @@
 /** @format */
 "use client";
-import { createContext, useContext, useState } from "react";
 
-const modalContext = createContext<any>(null);
+import {
+  createContext,
+  useContext,
+  useMemo,
+  useState,
+  ReactNode,
+  useCallback,
+} from "react";
+
+export type ModalId = "wallet" | "support" | "comingsoon" | null;
+
+type ModalContextType = {
+  openId: ModalId;
+  open: (id: Exclude<ModalId, null>) => void;
+  close: () => void;
+  isOpen: (id: Exclude<ModalId, null>) => boolean;
+};
+
+const ModalContext = createContext<ModalContextType | null>(null);
 
 export default function ModalContextProvider({
   children,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
-  const [isModalOpen, setModalOpen] = useState(false);
-  const [isSupportModalOpen, setSupportModalOpen] = useState(false);
+  const [openId, setOpenId] = useState<ModalId>(null);
 
-  const handleOpenModal = () => {
+  const open = useCallback((id: Exclude<ModalId, null>) => setOpenId(id), []);
+  const close = useCallback(() => setOpenId(null), []);
+  const isOpen = useCallback(
+    (id: Exclude<ModalId, null>) => openId === id,
+    [openId]
+  );
 
-    setModalOpen(true);
-  };
-  const handleCloseModal = () => {
-    setModalOpen(false);
-  };
-
-  const handleOpenSupportModal = () => {
-
-    setSupportModalOpen(true);
-  };
-  const handleCloseSupportModal = () => {
-    setSupportModalOpen(false);
-  };
+  const value = useMemo<ModalContextType>(
+    () => ({ openId, open, close, isOpen }),
+    [openId, open, close, isOpen]
+  );
 
   return (
-    <modalContext.Provider
-      value={{
-        handleOpenModal,
-        handleCloseModal,
-        isModalOpen,
-        isSupportModalOpen,
-        handleCloseSupportModal,
-handleOpenSupportModal      }}
-    >
-      {children}
-    </modalContext.Provider>
+    <ModalContext.Provider value={value}>{children}</ModalContext.Provider>
   );
 }
 
 export const useModal = () => {
-  const contxt = useContext(modalContext);
-
-  if (!contxt) {
-    throw new Error("useModalContext must be used within the modal context");
-  }
-
-  return contxt;
+  const ctx = useContext(ModalContext);
+  if (!ctx)
+    throw new Error("useModal must be used within ModalContextProvider");
+  return ctx;
 };

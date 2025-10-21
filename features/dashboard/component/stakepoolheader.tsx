@@ -1,8 +1,8 @@
 /** @format */
 
 import Image from "next/image";
-import CustomButton from "@/ui/custom/button";
-import logo from "../../../public/logo.png"; 
+import CustomButton from "@/shared/ui/custom/button";
+import logo from "../../../public/logo.png";
 
 interface StakePoolHeaderProps {
   setShowStakePoolInfo: React.Dispatch<React.SetStateAction<boolean>>;
@@ -17,12 +17,7 @@ export default function StakePoolHeader({
       <div className="mb-4 md:mb-6">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 md:gap-10">
           <div className="flex items-center mx-auto gap-3 md:gap-5">
-            <Image
-              src={logo}
-              width={0}
-              height={50}
-              alt="logo"
-            />
+            <Image src={logo} width={0} height={50} alt="logo" />
             <h2 className="text-base md:text-lg font-medium text-center sm:text-left">
               KindredNodes Stake Pool
             </h2>

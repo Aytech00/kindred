@@ -1,7 +1,7 @@
 /** @format */
 
 import Image from "next/image";
-import CustomButton from "@/ui/custom/button";
+import CustomButton from "@/shared/ui/custom/button";
 import empty from "../../../public/emptystate.png";
 
 export default function PortfolioPanel() {

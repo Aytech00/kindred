@@ -1,28 +1,23 @@
 /** @format */
-"use client"
+"use client";
 import Image from "next/image";
 import Link from "next/link";
-import logo from "../../../public/logo.png"; 
-import CustomButton from "@/ui/custom/button";
+import logo from "../../../public/logo.png";
+import CustomButton from "@/shared/ui/custom/button";
 import { useModal } from "@/context/modalcontext";
 
 const year = new Date().getFullYear();
 
 export default function Footer() {
+  const { open } = useModal();
 
-    const { handleOpenModal } = useModal()
-  
   return (
     <>
-     
-
       <footer className="bg-kindred-primary text-neutral-900">
         <div className="mx-auto max-w-7xl px-6">
           <hr className="border-t border-neutral-300/70" />
 
           <div className="flex flex-col items-center gap-6 py-6 md:flex-row justify-center">
-           
-
             <nav aria-label="Footer">
               <ul className="flex flex-wrap justify-center items-center gap-x-8 gap-y-2 text-sm text-neutral-700">
                 <li>

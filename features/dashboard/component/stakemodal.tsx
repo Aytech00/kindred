@@ -6,8 +6,8 @@ import {
   AlertDialogContent,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/ui/alert-dialog";
-import CustomButton from "@/ui/custom/button";
+} from "@/shared/ui/alert-dialog";
+import CustomButton from "@/shared/ui/custom/button";
 
 export default function StakeModal({
   isOpen,

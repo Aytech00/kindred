@@ -1,6 +1,6 @@
 /** @format */
 
-import CustomButton from "@/ui/custom/button";
+import CustomButton from "@/shared/ui/custom/button";
 
 type Props = {
   activeTab: string;

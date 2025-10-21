@@ -1,11 +1,11 @@
 /** @format */
 "use client";
 import React from "react";
-import CustomButton from "@/ui/custom/button";
+import CustomButton from "@/shared/ui/custom/button";
 import { useModal } from "@/context/modalcontext";
 
 export default function Hero() {
-  const { handleOpenModal } = useModal();
+  const { open } = useModal();
   return (
     <section className="relative overflow-hidden ">
       <div className="relative mx-auto  sm:max-w-2xl px-6 py-10 sm:py-24 md:py-20 text-center">
@@ -27,10 +27,11 @@ export default function Hero() {
 
         <div className="flex justify-center gap-3">
           <CustomButton
-            onClick={handleOpenModal}
+            onClick={()=> open("comingsoon")}
             className="px-6 py-3 text-base md:text-lg"
           >
-Start Staking          </CustomButton>
+            Start Staking{" "}
+          </CustomButton>
         </div>
       </div>
     </section>

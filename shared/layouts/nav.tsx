@@ -1,18 +1,20 @@
 /** @format */
 "use client";
 import Link from "next/link";
-import CustomButton from "@/ui/custom/button";
+import CustomButton from "@/shared/ui/custom/button";
 import Image from "next/image";
 import { useState } from "react";
-import logo from "../../../public/logo.png";
+import logo from "../../public/logo.png";
 import { useModal } from "@/context/modalcontext";
 import { CircleQuestionMark } from "lucide-react";
 import { Facebook, Instagram } from "lucide-react";
+import { useWalletContext } from "@/context/walletcontext";
 
 const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { connected, shortAddress } = useWalletContext(); 
 
-  const { handleOpenModal, handleOpenSupportModal } = useModal();
+  const { open } = useModal();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -31,7 +33,7 @@ const Nav = () => {
         <div className="hidden lg:block">
           <div className="flex justify-center items-center gap-6">
             <button
-              onClick={handleOpenSupportModal}
+              onClick={() => open("support")}
               className="mx-auto cursor-pointer"
             >
               <div className="flex justify-center">
@@ -40,8 +42,15 @@ const Nav = () => {
               <p className="text-[14px] font-light">Support</p>
             </button>
             <div className="">
-              <CustomButton onClick={handleOpenModal}>
-                Connect Wallet
+              <CustomButton
+                onClick={(e: React.MouseEvent) => {
+                  e.preventDefault();
+                  open("wallet");
+                }}
+              >
+                {
+                  connected && shortAddress ? shortAddress : "Connect wallet"
+               }
               </CustomButton>
             </div>
           </div>
@@ -115,7 +124,7 @@ const Nav = () => {
             </Link>
             <button
               onClick={() => {
-                handleOpenSupportModal();
+                open("support");
                 closeMenu();
               }}
               className="text-base font-normal text-gray-900 hover:text-gray-600 transition-colors duration-200"
@@ -125,8 +134,9 @@ const Nav = () => {
 
             <div className="w-full  max-w-xs pt-2">
               <CustomButton
-                onClick={() => {
-                  handleOpenModal();
+                onClick={(e: React.MouseEvent) => {
+                  e.preventDefault();
+                  open("wallet");
                   closeMenu();
                 }}
                 className="w-[200px] mx-auto"

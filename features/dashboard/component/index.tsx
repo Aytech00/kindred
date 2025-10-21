@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Tab from "./tab";
 import ComingsoonList from "./comingsoonlist";
-import CustomButton from "@/ui/custom/button";
+import CustomButton from "@/shared/ui/custom/button";
 import StakePoolInfo from "./stakepoolinfo";
 import StakeModal from "./stakemodal";
 import logo from "../../../public/logo.png";

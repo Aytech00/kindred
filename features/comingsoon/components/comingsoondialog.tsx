@@ -6,17 +6,17 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@/ui/dialog";
+} from "@/shared/ui/dialog";
 
-import { Button } from "@/ui/button";
-import { useModal } from "@/context/modalcontext";
-import CustomButton from "../button";
+import CustomButton from "../../../shared/ui/custom/button";
 
-export default function ComingSoonModal() {
-  const { isModalOpen, handleCloseModal } = useModal();
-
+type ComingsoonDialogProps = {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+};
+export default function ComingSoonDialog({ open, onOpenChange }: ComingsoonDialogProps ) {
   return (
-    <Dialog open={isModalOpen} onOpenChange={handleCloseModal}>
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-center">
@@ -46,7 +46,7 @@ export default function ComingSoonModal() {
         </div>
 
         <div className="flex justify-center">
-          <CustomButton onClick={handleCloseModal} className="w-full sm:w-auto">
+          <CustomButton className="w-full sm:w-auto">
             Got it!
           </CustomButton>
         </div>

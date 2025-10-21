@@ -1,26 +1,39 @@
 /** @format */
 "use client";
 
-import React, { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/ui/dialog";
-import CustomButton from "@/ui/custom/button";
+import React, { useState, useTransition } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/shared/ui/dialog";
+import CustomButton from "@/shared/ui/custom/button";
 import AccordionItem from "./accordion";
-import { useModal } from "@/context/modalcontext";
 import IssueCategoryField from "./issuecategory";
+import { submitContactForm } from "../server/action";
+import { toast } from "@/hooks/use-toast";
 
-export default function SupportModal() {
+type DialogProps = {
+  open: boolean;
+  onOpenChange: (open: boolean) => void; 
+};
+
+export default function SupportDialog({
+  open,
+  onOpenChange,
+}: DialogProps) {
   const [tab, setTab] = useState<"faqs" | "contact">("faqs");
-
-  const { handleCloseSupportModal, isSupportModalOpen } = useModal();
+  const [isPending, start] = useTransition();
 
   return (
-    <Dialog open={isSupportModalOpen} onOpenChange={handleCloseSupportModal}>
-      <DialogContent className="w-[95%] sm:max-w-[900px] p-0 overflow-hidden max-h-[90vh] overflow-y-auto">
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="w-[95%] sm:max-w-[900px] p-0 max-h-[90vh] overflow-y-auto">
         <DialogHeader className="px-4 sm:px-6 pt-4 sm:pt-6 pb-0">
           <div className="flex gap-2 sm:gap-3">
             <button
               onClick={() => setTab("faqs")}
-              className={`px-3 sm:px-4 py-2 cursor-pointer text-xs sm:text-sm font-medium  ${
+              className={`px-3 sm:px-4 py-2 cursor-pointer text-xs sm:text-sm font-medium ${
                 tab === "faqs"
                   ? "bg-black text-white"
                   : "bg-gray-100 text-gray-900 hover:bg-gray-200"
@@ -30,7 +43,7 @@ export default function SupportModal() {
             </button>
             <button
               onClick={() => setTab("contact")}
-              className={`px-3 sm:px-4 py-2 cursor-pointer text-xs sm:text-sm font-medium  ${
+              className={`px-3 sm:px-4 py-2 cursor-pointer text-xs sm:text-sm font-medium ${
                 tab === "contact"
                   ? "bg-black text-white"
                   : "bg-gray-100 text-gray-900 hover:bg-gray-200"
@@ -107,17 +120,52 @@ export default function SupportModal() {
                 </div>
 
                 <div className="rounded-md w-full lg:w-[450px] border border-gray-200 p-3 sm:p-5 shadow-sm bg-white">
-                  <form className="space-y-3">
+                  <form
+                    action={(fd) =>
+                      start(async () => {
+                        const res = await submitContactForm(fd);
+
+                        if (res.success) {
+                          toast({
+                            title: "Success!",
+                            description: res.message,
+                          });
+                          onOpenChange(false);
+                        } else {
+                          toast({
+                            title: "Error",
+                            description: res.message,
+                            variant: "destructive",
+                          });
+                        }
+                      })
+                    }
+                    className="space-y-3"
+                  >
                     <div>
                       <label className="block text-sm text-gray-700 mb-1">
                         Name
                       </label>
                       <input
+                        name="name"
                         type="text"
                         className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-black"
                         required
                       />
                     </div>
+
+                    <div>
+                      <label className="block text-sm text-gray-700 mb-1">
+                        Email
+                      </label>
+                      <input
+                        name="email"
+                        type="email"
+                        className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+                        required
+                      />
+                    </div>
+
                     <div>
                       <IssueCategoryField />
                     </div>
@@ -127,6 +175,7 @@ export default function SupportModal() {
                         Message
                       </label>
                       <textarea
+                        name="message"
                         rows={4}
                         className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-black"
                         required
@@ -134,7 +183,9 @@ export default function SupportModal() {
                     </div>
 
                     <div className="flex justify-center gap-3 pt-2">
-                      <CustomButton type="submit">Send</CustomButton>
+                      <CustomButton type="submit">
+                        {isPending ? "Processing" : "Send"}
+                      </CustomButton>
                     </div>
                   </form>
                 </div>
