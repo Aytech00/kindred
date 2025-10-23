@@ -10,6 +10,7 @@ import NetworkPill from "./pills";
 import { shortAddr } from "@/lib/shortaddy";
 import WalletSelectionCard from "./selectcard";
 import { waitForNuFiWidget } from "@/lib/utils";
+import { isMobile } from "@/lib/device";
 
 interface ConnectPanelProps {
   onSuccess?: () => void;
@@ -32,8 +33,10 @@ export const ConnectPanel: React.FC<ConnectPanelProps> = ({ onSuccess }) => {
 
   const [available, setAvailable] = useState<MeshWallet[]>([]);
   const [selectedWallet, setSelectedWallet] = useState<string | null>(null);
+const [mobile, setMobile] = useState(false);
 
   useEffect(() => {
+      setMobile(isMobile());
     const wallets = BrowserWallet.getInstalledWallets().filter(
       (w) => w.name.toLowerCase() !== "nami"
     );
@@ -90,9 +93,6 @@ export const ConnectPanel: React.FC<ConnectPanelProps> = ({ onSuccess }) => {
     }
   };
 
-  // useEffect(() => {
-  //   if (connected) onSuccess?.();
-  // }, [connected, onSuccess]);
 
 
   const handleDisconnect = () => {
@@ -164,7 +164,8 @@ export const ConnectPanel: React.FC<ConnectPanelProps> = ({ onSuccess }) => {
       ) : (
         <WalletSelectionCard
           available={available}
-          handleProceed={handleProceed}
+            handleProceed={handleProceed}
+            mobile={mobile}
           selectedWallet={selectedWallet}
           setSelectedWallet={setSelectedWallet}
           connecting={connecting}

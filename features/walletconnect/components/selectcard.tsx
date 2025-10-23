@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import React from "react";
 import WalletRow from "./walletrow";
 import type { Wallet as MeshWallet } from "@meshsdk/core";
+import MobileNoWalletCard from "./mobilewalletcard";
 
 type SelectionCardProps = {
   connecting: boolean;
@@ -13,10 +14,12 @@ type SelectionCardProps = {
   handleWalletSelect: (name: string) => void;
   handleProceed: () => void;
   handleSocialLogin: () => void;
+  mobile: boolean
 };
 
 export default function WalletSelectionCard({
   connecting,
+  mobile,
   selectedWallet,
   available,
   setSelectedWallet,
@@ -59,7 +62,29 @@ export default function WalletSelectionCard({
 
       <div className="space-y-3">
         <div className="grid gap-3">
-          {available.length === 0 && (
+          {available.length === 0 ? (
+            mobile ? (
+              <MobileNoWalletCard />
+            ) : (
+              <div className="rounded-xl border p-4 text-sm text-muted-foreground">
+                No CIP-30 wallets detected. Install Lace, Eternl, Flint, Typhon…
+              </div>
+            )
+          ) : (
+            <div className="grid gap-3">
+              {available.map((w) => (
+                <WalletRow
+                  key={w.name}
+                  wallet={w}
+                  onConnect={() => handleWalletSelect(w.name)}
+                  disabled={connecting}
+                  isSelected={selectedWallet === w.name}
+                />
+              ))}
+            </div>
+          )}
+
+          {/* {available.length === 0 && (
             <div className="rounded-xl border p-4 text-sm text-muted-foreground">
               No CIP-30 wallets detected. Install Lace, Eternl, Flint, or
               Typhon…
@@ -73,7 +98,7 @@ export default function WalletSelectionCard({
               disabled={connecting}
               isSelected={selectedWallet === w.name}
             />
-          ))}
+          ))} */}
         </div>
 
         {available.length > 0 && (
