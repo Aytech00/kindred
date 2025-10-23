@@ -12,6 +12,8 @@
   "dependencies": {
     "@meshsdk/core": "^1.9.0-beta.81",
     "@meshsdk/react": "^1.9.0-beta.81",
+    "@nufi/dapp-client-cardano": "^0.7.0",
+    "@nufi/dapp-client-core": "^0.7.0",
     "@prisma/client": "^6.16.1",
     "@radix-ui/react-accordion": "^1.2.12",
     "@radix-ui/react-alert-dialog": "^1.1.15",

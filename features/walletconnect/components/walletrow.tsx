@@ -8,17 +8,21 @@ import { Link2 } from "lucide-react";
 export default function WalletRow({
   wallet,
   onConnect,
+  isSelected,
   disabled,
 }: {
   wallet: MeshWallet;
   onConnect: (name: string) => void;
   disabled?: boolean;
+  isSelected: boolean;
 }) {
   return (
     <button
       onClick={() => onConnect(wallet.name)}
       disabled={disabled}
-      className="flex w-full items-center justify-between rounded-xl border p-3 hover:bg-muted disabled:opacity-60"
+      className={`flex w-full cursor-pointer items-center justify-between  border p-3 hover:bg-muted disabled:opacity-60  ${
+        isSelected ? "ring-2 ring-kindred-text" : ""
+      }`}
     >
       <div className="flex items-center gap-3">
         <img src={wallet.icon} alt={wallet.name} className="h-6 w-6 rounded" />

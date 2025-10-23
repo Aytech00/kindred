@@ -1,4 +1,5 @@
 /** @format */
+
 import type { Metadata } from "next";
 import { Manrope, Outfit } from "next/font/google";
 import "./globals.css";
@@ -10,6 +11,9 @@ import ModalContextProvider from "@/context/modalcontext";
 import GlobalModals from "@/shared/ui/custom/globalmodal";
 import MeshWrapper from "@/shared/providers/meshwrap";
 import { WalletContextProvider } from "@/context/walletcontext";
+import { NuFiProvider } from "@/shared/providers/nufi-provider";
+
+import { headers } from "next/headers";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -39,6 +43,10 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+
+  
+
+
   return (
     <html lang="en" className="bg-brand-black text-white">
       <body
@@ -47,15 +55,17 @@ export default function RootLayout({
         <ReactQueryProvider>
           <NextAuthProvider>
             <MeshWrapper>
-              <WalletContextProvider>
-                <LayoutContextProvider>
-                  <ModalContextProvider>
-                    <main className="flex-1">{children}</main>
-                    <Toaster />
-                    <GlobalModals />
-                  </ModalContextProvider>
-                </LayoutContextProvider>
-              </WalletContextProvider>
+              <NuFiProvider>
+                <WalletContextProvider>
+                  <LayoutContextProvider>
+                    <ModalContextProvider>
+                      <main className="flex-1">{children}</main>
+                      <Toaster />
+                      <GlobalModals />
+                    </ModalContextProvider>
+                  </LayoutContextProvider>
+                </WalletContextProvider>
+              </NuFiProvider>
             </MeshWrapper>
           </NextAuthProvider>
         </ReactQueryProvider>

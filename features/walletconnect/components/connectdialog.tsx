@@ -15,18 +15,26 @@ type DialogProps = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
 };
-export default function WalletConnectDialog({ open, onOpenChange }: DialogProps) {
+
+export default function WalletConnectDialog({
+  open,
+  onOpenChange,
+}: DialogProps) {
+  const handleSuccess = () => {
+    onOpenChange(false);
+  };
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-xl">
-        <DialogHeader>
+      <DialogContent className="sm:max-w-xl" showCloseButton={false}>
+        <DialogHeader className="mb-5">
           <DialogTitle>Connect your Cardano wallet</DialogTitle>
-          <DialogDescription>
+          {/* <DialogDescription>
             Select a CIP-30 compatible wallet to continue.
-          </DialogDescription>
+          </DialogDescription> */}
         </DialogHeader>
 
-        <ConnectPanel />
+        <ConnectPanel onSuccess={handleSuccess} />
       </DialogContent>
     </Dialog>
   );
