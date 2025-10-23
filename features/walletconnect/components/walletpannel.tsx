@@ -68,7 +68,7 @@ export const ConnectPanel: React.FC<ConnectPanelProps> = ({ onSuccess }) => {
     // Start watching BEFORE triggering the SDK
     const watching =
       typeof window !== "undefined"
-        ? waitForNuFiWidget(15000)
+        ? waitForNuFiWidget(20000)
         : Promise.resolve(null);
 
     try {
