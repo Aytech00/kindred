@@ -67,10 +67,12 @@ export function WalletContextProvider({ children }: { children: ReactNode }) {
       setNetworkId(null);
       return;
     }
+
     const addr = await wallet.getChangeAddress();
     const netId = await wallet.getNetworkId();
 
     let lovelace: string | null = null;
+
     if (typeof (wallet as any).getLovelace === "function") {
       lovelace = await (wallet as any).getLovelace();
     } else if (typeof (wallet as any).getAssets === "function") {
@@ -158,6 +160,7 @@ export function WalletContextProvider({ children }: { children: ReactNode }) {
   const connect = useCallback(
     async (
       walletName: string,
+      
       persist: "local" | "session" | false = "local"
     ) => {
       setConnecting(true);

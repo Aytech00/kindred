@@ -22,7 +22,7 @@ export function NuFiProvider({ children }: { children: React.ReactNode }) {
         // nufiCoreSdk.init('https://wallet.nu.fi');
         
         initialized.current = true;
-        console.log("✅ NuFi SDK initialized");
+        // console.log("✅ NuFi SDK initialized");
       } catch (error) {
         console.error("❌ Failed to initialize NuFi SDK:", error);
       }

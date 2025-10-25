@@ -12,8 +12,7 @@ import GlobalModals from "@/shared/ui/custom/globalmodal";
 import MeshWrapper from "@/shared/providers/meshwrap";
 import { WalletContextProvider } from "@/context/walletcontext";
 import { NuFiProvider } from "@/shared/providers/nufi-provider";
-
-import { headers } from "next/headers";
+import  WalletDisconnectToggle  from "@/features/walletconnect/components/disconnecttoggle";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -52,8 +51,6 @@ export default function RootLayout({
       <body
         className={`${outfit.variable} ${manrope.variable} antialiased min-h-dvh flex flex-col`}
       >
-        <ReactQueryProvider>
-          <NextAuthProvider>
             <MeshWrapper>
               <NuFiProvider>
                 <WalletContextProvider>
@@ -61,14 +58,13 @@ export default function RootLayout({
                     <ModalContextProvider>
                       <main className="flex-1">{children}</main>
                       <Toaster />
+                      <WalletDisconnectToggle />
                       <GlobalModals />
                     </ModalContextProvider>
                   </LayoutContextProvider>
                 </WalletContextProvider>
               </NuFiProvider>
             </MeshWrapper>
-          </NextAuthProvider>
-        </ReactQueryProvider>
       </body>
     </html>
   );

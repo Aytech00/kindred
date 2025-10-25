@@ -63,7 +63,7 @@ export default function PortfolioPanel() {
             </div>
           </div>
 
-          {/* Mobile Table */}
+          
           <div className="sm:hidden">
             <div className="grid grid-cols-[1fr_1fr_1fr] gap-4 text-sm text-gray-600 px-1">
               <div className="font-medium">Tokens</div>

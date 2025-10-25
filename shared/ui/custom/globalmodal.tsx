@@ -10,7 +10,7 @@ import WalletConnectDialog from "@/features/walletconnect/components/connectdial
 export default function GlobalModals() {
   const { isOpen, close, openId } = useModal();
 
-    console.log(openId);
+    // console.log(openId);
     
   return (
     <>

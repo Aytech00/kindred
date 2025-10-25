@@ -26,7 +26,7 @@ const Nav = () => {
 
   return (
     <div className="w-full py-3 text-black bg-kindred-primary relative">
-      <nav className="mx-auto px-4 sm:px-6 lg:px-20 flex justify-between items-center">
+      <nav className="mx-auto px-4 sm:px-6 lg:px-18 flex justify-between items-center">
         <Link href="/">
           <Image src={logo} alt="logo" width={90} height={30} />
         </Link>
@@ -43,7 +43,7 @@ const Nav = () => {
             </button>
             <div className="">
               <CustomButton
-                isLoading={connecting}
+               
                 onClick={(e: React.MouseEvent) => {
                   e.preventDefault();
                   open("wallet");
@@ -133,7 +133,7 @@ const Nav = () => {
 
             <div className="w-full  max-w-xs pt-2">
               <CustomButton
-                isLoading={connecting}
+               
                 onClick={(e: React.MouseEvent) => {
                   e.preventDefault();
                   open("wallet");

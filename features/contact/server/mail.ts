@@ -41,16 +41,16 @@ export async function sendEmail(data: ContactFormData) {
 
   if (!res.ok) {
     const errorText = await res.text();
-    console.error("❌ Resend API error:", {
-      status: res.status,
-      statusText: res.statusText,
-      error: errorText,
-    });
+    // console.error("❌ Resend API error:", {
+    //   status: res.status,
+    //   statusText: res.statusText,
+    //   error: errorText,
+    // });
     throw new Error(`Failed to send email: ${res.status} ${res.statusText}`);
   }
 
   const result = await res.json();
-  console.log("✅ Email sent successfully:", result);
+  // console.log("✅ Email sent successfully:", result);
 
   return result;
 }

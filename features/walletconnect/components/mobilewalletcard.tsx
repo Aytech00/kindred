@@ -30,7 +30,8 @@ export default function MobileNoWalletCard() {
   };
 
   return (
-    <div className="rounded-xl border p-4 space-y-4">
+      <div className="rounded-xl border p-4 space-y-4">
+          
       <div className="space-y-1">
         <h3 className="font-semibold">No mobile wallet detected</h3>
         <p className="text-sm text-muted-foreground">
@@ -38,7 +39,8 @@ export default function MobileNoWalletCard() {
           browser. Open this site from your wallet app, or install a Cardano
           wallet below.
         </p>
-      </div>
+          </div>
+          
 
       <div className="flex items-center justify-between gap-2 rounded-lg bg-muted p-2">
         <code className="text-xs break-all">{url}</code>
@@ -51,7 +53,7 @@ export default function MobileNoWalletCard() {
         </button>
       </div>
 
-      <div className="grid sm:grid-cols-2 gap-2">
+      {/* <div className="grid sm:grid-cols-2 gap-2">
         {WALLET_QUERIES.map((name) => (
           <div
             key={name}
@@ -78,7 +80,7 @@ export default function MobileNoWalletCard() {
             </div>
           </div>
         ))}
-      </div>
+      </div> */}
 
       <p className="text-xs text-muted-foreground">
         Tip: In your wallet app, open the in-app browser and navigate to this

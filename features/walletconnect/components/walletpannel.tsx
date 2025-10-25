@@ -102,66 +102,13 @@ const [mobile, setMobile] = useState(false);
 
   const connectedCard = (
     <div className="space-y-4">
-      <div className="rounded-2xl border p-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Wallet className="h-5 w-5" />
-            <div className="font-semibold">
-              {isSocialLogin ? "Social Login" : walletName}
-            </div>
-          </div>
-          <NetworkPill id={networkId} />
-        </div>
-
-        {isSocialLogin && socialLoginInfo && (
-          <div className="mt-3 flex items-center gap-2 text-sm text-muted-foreground">
-            <Mail className="h-4 w-4" />
-            <span>
-              {socialLoginInfo.email} via{" "}
-              {socialLoginInfo.provider
-                ? socialLoginInfo.provider.charAt(0).toUpperCase() +
-                  socialLoginInfo.provider.slice(1)
-                : "Social"}
-            </span>
-          </div>
-        )}
-
-        <div className="mt-3 grid gap-2">
-          <div className="text-sm text-muted-foreground">Primary address</div>
-          <div className="flex items-center justify-between gap-2 rounded-lg bg-muted p-2">
-            <code className="text-xs break-all">
-              {shortAddr(address || undefined)}
-            </code>
-            <button
-              className="inline-flex cursor-pointer items-center gap-1 rounded-md border px-2 py-1 text-xs hover:bg-background"
-              onClick={async () => {
-                if (address) await navigator.clipboard.writeText(address);
-              }}
-            >
-              <Copy className="h-3 w-3" /> Copy
-            </button>
-          </div>
-          <div className="text-sm text-muted-foreground">Balance (ADA)</div>
-          <div className="text-lg font-semibold">{balanceAda}</div>
-        </div>
-
-        <div className="mt-4 flex justify-end">
-          <button
-            onClick={handleDisconnect}
-            className="inline-flex items-center gap-2 rounded-md border border-destructive px-4 py-2 text-sm text-destructive hover:bg-destructive/10"
-          >
-            <Unplug className="h-4 w-4" /> Disconnect
-          </button>
-        </div>
-      </div>
+      helo
     </div>
   );
 
   return (
-    <div className="mx-auto w-full max-w-xl space-y-4">
-      {connected ? (
-        connectedCard
-      ) : (
+    <div className="mx-auto w-full max-w-xl ">
+     
         <WalletSelectionCard
           available={available}
             handleProceed={handleProceed}
@@ -172,7 +119,7 @@ const [mobile, setMobile] = useState(false);
           handleSocialLogin={handleSocialLogin}
           handleWalletSelect={handleWalletSelect}
         />
-      )}
+      
     </div>
   );
 };

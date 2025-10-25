@@ -5,7 +5,7 @@ import shape from "../../../public/shape.png";
 export default function RightSideBar() {
   return (
     <aside className="w-72 hidden md:block bg-kindred-secondary border-l border-gray-200 p-6">
-      <div className="flex items-center gap-2 mb-4">
+      <div className="flex items-center gap-2 mb-1">
         <img src={shape.src} className="w-4" alt="" />
 
         <h2 className="text-[20px] font-[600]">Staking</h2>
