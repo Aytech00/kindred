@@ -43,7 +43,7 @@ const Nav = () => {
             </button>
             <div className="">
               <CustomButton
-               
+               disabled={connecting}
                 onClick={(e: React.MouseEvent) => {
                   e.preventDefault();
                   open("wallet");
@@ -133,7 +133,7 @@ const Nav = () => {
 
             <div className="w-full  max-w-xs pt-2">
               <CustomButton
-               
+               isLoading={connecting}
                 onClick={(e: React.MouseEvent) => {
                   e.preventDefault();
                   open("wallet");

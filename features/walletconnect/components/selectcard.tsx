@@ -9,6 +9,7 @@ import CustomButton from "@/shared/ui/custom/button";
 
 type SelectionCardProps = {
   connecting: boolean;
+  autoReconnecting: boolean; // ADD THIS
   selectedWallet: string | null;
   available: MeshWallet[];
   setSelectedWallet: React.Dispatch<React.SetStateAction<string | null>>;
@@ -16,10 +17,13 @@ type SelectionCardProps = {
   handleProceed: () => void;
   handleSocialLogin: () => void;
   mobile: boolean;
+  socialLoginInfo: { email?: string; provider?: string } | null; // ADD THIS
+  isSocialLogin: boolean; // ADD THIS
 };
 
 export default function WalletSelectionCard({
   connecting,
+  autoReconnecting, // ADD THIS
   mobile,
   selectedWallet,
   available,
@@ -27,9 +31,15 @@ export default function WalletSelectionCard({
   handleWalletSelect,
   handleProceed,
   handleSocialLogin,
+  socialLoginInfo,
+  isSocialLogin, 
 }: SelectionCardProps) {
+  const isDisabled = connecting || autoReconnecting;
+
   return (
     <div className="">
+     
+
       <div className="mb-20">
         <div className="">
           {available.length === 0 ? (
@@ -47,7 +57,7 @@ export default function WalletSelectionCard({
                   key={w.name}
                   wallet={w}
                   onConnect={() => handleWalletSelect(w.name)}
-                  disabled={connecting}
+                  disabled={isDisabled}
                   isSelected={selectedWallet === w.name}
                 />
               ))}
@@ -57,38 +67,43 @@ export default function WalletSelectionCard({
       </div>
 
       <div className="">
-        <div className=" mb-3">
+        <div className="mb-3">
           {available.length > 0 && (
-            <div className="flex flex-col items-center gap-3  ">
-              {/* <button
-              type="button"
-              onClick={() => setSelectedWallet(null)}
-              className="inline-flex items-center gap-2  border px-4 py-2 text-sm hover:bg-muted disabled:opacity-50"
-              disabled={!selectedWallet}
-            >
-              Clear Selection
-            </button> */}
-
+            <div className="flex flex-col items-center gap-3">
               <button
                 type="button"
                 onClick={handleProceed}
-                disabled={!selectedWallet || connecting}
-                className="inline-flex items-center gap-2  bg-kindred-text px-6 py-2 text-sm text-white hover:bg-kindred-text/90 disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={!selectedWallet || isDisabled}
+                className="inline-flex items-center gap-2 bg-kindred-text px-6 py-2 text-sm text-white hover:bg-kindred-text/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
               >
-                {connecting ? "Connecting..." : "Proceed"}
-                <ArrowRight className="h-4 w-4" />
+                {connecting || autoReconnecting ? (
+                  <>
+                    <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
+                    Connecting...
+                  </>
+                ) : (
+                  <>
+                    Proceed
+                    <ArrowRight className="h-4 w-4" />
+                  </>
+                )}
               </button>
             </div>
           )}
         </div>
+
         <CustomButton
           className="w-full"
-          isLoading={connecting}
+          isLoading={connecting || autoReconnecting}
           onClick={handleSocialLogin}
-          disabled={connecting}
+          disabled={isDisabled}
         >
-          NuFi Login
+          {isSocialLogin && socialLoginInfo?.email
+            ? `Continue as ${socialLoginInfo.email.split("@")[0]}`
+            : "NuFi Login"}
         </CustomButton>
+
+       
       </div>
     </div>
   );

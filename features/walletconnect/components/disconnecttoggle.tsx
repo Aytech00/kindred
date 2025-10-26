@@ -25,7 +25,10 @@ export default function WalletDisconnectToggle({ offsetTopPx = 72 }: Props) {
     }
   }, [openId, isOpen, connected]);
 
-  // Don't render anything if wallet is not connected or button is hidden
+  const handleDisconnect = () => {
+    disconnect(true); 
+  };
+
   if (!connected || !showDisconnectBtn) {
     return null;
   }
@@ -42,7 +45,7 @@ export default function WalletDisconnectToggle({ offsetTopPx = 72 }: Props) {
       <div className="relative">
         <CustomButton
           type="button"
-          onClick={disconnect}
+          onClick={handleDisconnect}
           className="
             !bg-red-600 !hover:bg-red-700
             text-white font-semibold
@@ -59,8 +62,7 @@ export default function WalletDisconnectToggle({ offsetTopPx = 72 }: Props) {
           type="button"
           onClick={() => setShowDisconnectBtn(false)}
           className="
-
-          cursor-pointer
+            cursor-pointer
             absolute -top-2 -right-2
             bg-kindred-text hover:bg-gray-900
             text-white

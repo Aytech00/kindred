@@ -24,6 +24,7 @@ export default function WalletConnectDialog({
 
 
   const { connected } = useWalletContext()
+  
  useEffect(() => {
    if (connected && open) {
      onOpenChange(false);

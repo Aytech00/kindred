@@ -34,7 +34,8 @@ type WalletContextType = {
     persist?: "local" | "session" | false
   ) => Promise<void>;
   connectSocial: () => Promise<void>;
-  disconnect: () => void;
+  disconnect: (clearSession?: boolean) => void;
+  reconnect: () => Promise<void>;
   refreshWalletData: () => Promise<void>;
 };
 
@@ -43,6 +44,23 @@ const WalletContext = createContext<WalletContextType | null>(null);
 const STORAGE_KEY = "wallet.last";
 const STORAGE_SESSION_KEY = "wallet.last.session";
 const SOCIAL_LOGIN_KEY = "wallet.social";
+
+// Helper function to check if NuFi extension is enabled
+async function checkNufiExtensionEnabled(): Promise<boolean> {
+  if (typeof window === "undefined") return false;
+
+  try {
+    const cardano = (window as any).cardano;
+    if (cardano?.nufi) {
+      const isEnabled = await cardano.nufi.isEnabled?.();
+      return isEnabled === true;
+    }
+  } catch (error) {
+    console.log("NuFi check failed:", error);
+  }
+
+  return false;
+}
 
 export function WalletContextProvider({ children }: { children: ReactNode }) {
   const {
@@ -68,21 +86,25 @@ export function WalletContextProvider({ children }: { children: ReactNode }) {
       return;
     }
 
-    const addr = await wallet.getChangeAddress();
-    const netId = await wallet.getNetworkId();
+    try {
+      const addr = await wallet.getChangeAddress();
+      const netId = await wallet.getNetworkId();
 
-    let lovelace: string | null = null;
+      let lovelace: string | null = null;
 
-    if (typeof (wallet as any).getLovelace === "function") {
-      lovelace = await (wallet as any).getLovelace();
-    } else if (typeof (wallet as any).getAssets === "function") {
-      const assets: Asset[] = await (wallet as any).getAssets();
-      lovelace = assets.find((a) => a.unit === "lovelace")?.quantity ?? "0";
+      if (typeof (wallet as any).getLovelace === "function") {
+        lovelace = await (wallet as any).getLovelace();
+      } else if (typeof (wallet as any).getAssets === "function") {
+        const assets: Asset[] = await (wallet as any).getAssets();
+        lovelace = assets.find((a) => a.unit === "lovelace")?.quantity ?? "0";
+      }
+
+      setAddress(addr);
+      setBalance(lovelace);
+      setNetworkId(netId);
+    } catch (error) {
+      console.error("Failed to refresh wallet data:", error);
     }
-
-    setAddress(addr);
-    setBalance(lovelace);
-    setNetworkId(netId);
   }, [connected, wallet]);
 
   useEffect(() => {
@@ -103,7 +125,7 @@ export function WalletContextProvider({ children }: { children: ReactNode }) {
     };
   }, [wallet, refreshWalletData]);
 
-  
+  // Monitor NuFi social login info
   useEffect(() => {
     if (typeof window === "undefined") return;
 
@@ -115,40 +137,44 @@ export function WalletContextProvider({ children }: { children: ReactNode }) {
     let cleanup: (() => void) | undefined;
 
     (async () => {
-      const coreMod = await import("@nufi/dapp-client-core");
-      const core: unknown = coreMod.default;
+      try {
+        const coreMod = await import("@nufi/dapp-client-core");
+        const core: unknown = coreMod.default;
 
-      const onChange = (core as any)?.onSocialLoginInfoChanged as
-        | ((
-            cb: (data: NufiSocialLoginInfo | null) => unknown
-          ) => void | (() => void))
-        | undefined;
+        const onChange = (core as any)?.onSocialLoginInfoChanged as
+          | ((
+              cb: (data: NufiSocialLoginInfo | null) => unknown
+            ) => void | (() => void))
+          | undefined;
 
-      if (typeof onChange === "function") {
-        const maybeUnsub = onChange((data) => {
-          const d = data as NufiSocialLoginInfo | null;
-          setSocialLoginInfo(
-            d
-              ? {
-                  email: d.email ?? undefined,
-                  provider: d.provider ?? undefined,
-                }
-              : null
-          );
-        });
-        if (typeof maybeUnsub === "function") cleanup = maybeUnsub;
-      }
+        if (typeof onChange === "function") {
+          const maybeUnsub = onChange((data) => {
+            const d = data as NufiSocialLoginInfo | null;
+            setSocialLoginInfo(
+              d
+                ? {
+                    email: d.email ?? undefined,
+                    provider: d.provider ?? undefined,
+                  }
+                : null
+            );
+          });
+          if (typeof maybeUnsub === "function") cleanup = maybeUnsub;
+        }
 
-      const getInfo = (core as any)?.getSocialLoginInfo as
-        | (() => NufiSocialLoginInfo | null | undefined)
-        | undefined;
+        const getInfo = (core as any)?.getSocialLoginInfo as
+          | (() => NufiSocialLoginInfo | null | undefined)
+          | undefined;
 
-      const current = typeof getInfo === "function" ? getInfo() : null;
-      if (current) {
-        setSocialLoginInfo({
-          email: current.email ?? undefined,
-          provider: current.provider ?? undefined,
-        });
+        const current = typeof getInfo === "function" ? getInfo() : null;
+        if (current) {
+          setSocialLoginInfo({
+            email: current.email ?? undefined,
+            provider: current.provider ?? undefined,
+          });
+        }
+      } catch (error) {
+        console.log("NuFi social login monitoring setup failed:", error);
       }
     })();
 
@@ -160,7 +186,6 @@ export function WalletContextProvider({ children }: { children: ReactNode }) {
   const connect = useCallback(
     async (
       walletName: string,
-      
       persist: "local" | "session" | false = "local"
     ) => {
       setConnecting(true);
@@ -176,6 +201,9 @@ export function WalletContextProvider({ children }: { children: ReactNode }) {
           localStorage.removeItem(SOCIAL_LOGIN_KEY);
         }
         setIsSocialLogin(false);
+      } catch (error) {
+        console.error("Wallet connection failed:", error);
+        throw error;
       } finally {
         setConnecting(false);
       }
@@ -198,23 +226,81 @@ export function WalletContextProvider({ children }: { children: ReactNode }) {
       localStorage.setItem(STORAGE_KEY, "nufiSSO");
       localStorage.setItem(SOCIAL_LOGIN_KEY, "true");
       setIsSocialLogin(true);
+    } catch (error) {
+      console.error("Social login connection failed:", error);
+      throw error;
     } finally {
       setConnecting(false);
     }
   }, [meshConnect]);
 
-  const disconnect = useCallback(() => {
-    meshDisconnect();
-    localStorage.removeItem(STORAGE_KEY);
-    sessionStorage.removeItem(STORAGE_SESSION_KEY);
-    localStorage.removeItem(SOCIAL_LOGIN_KEY);
-    setAddress(null);
-    setBalance(null);
-    setNetworkId(null);
-    setIsSocialLogin(false);
-    setSocialLoginInfo(null);
-  }, [meshDisconnect]);
+  const disconnect = useCallback(
+    (clearSession: boolean = true) => {
+      meshDisconnect();
 
+      if (clearSession) {
+        // Full disconnect - clear everything
+        localStorage.removeItem(STORAGE_KEY);
+        sessionStorage.removeItem(STORAGE_SESSION_KEY);
+        localStorage.removeItem(SOCIAL_LOGIN_KEY);
+      } else {
+        // Soft disconnect - keep preferences for quick reconnect
+        console.log("Soft disconnect - wallet preference retained");
+      }
+
+      setAddress(null);
+      setBalance(null);
+      setNetworkId(null);
+      setIsSocialLogin(false);
+      setSocialLoginInfo(null);
+    },
+    [meshDisconnect]
+  );
+
+  const reconnect = useCallback(async () => {
+    if (connected) {
+      console.log("Already connected");
+      return;
+    }
+
+    setConnecting(true);
+
+    try {
+      // Try NuFi extension first if it's enabled
+      const nufiEnabled = await checkNufiExtensionEnabled();
+      if (nufiEnabled) {
+        console.log("NuFi extension detected and enabled, reconnecting...");
+        await meshConnect("nufi");
+        localStorage.setItem(STORAGE_KEY, "nufi");
+        setIsSocialLogin(false);
+        return;
+      }
+
+      // Otherwise try stored preference
+      const stored =
+        localStorage.getItem(STORAGE_KEY) ||
+        sessionStorage.getItem(STORAGE_SESSION_KEY);
+
+      if (stored) {
+        const wasSocial = localStorage.getItem(SOCIAL_LOGIN_KEY) === "true";
+
+        if (stored === "nufiSSO" && wasSocial) {
+          await connectSocial();
+        } else {
+          await connect(stored, "local");
+        }
+      } else {
+        console.log("No wallet preference found");
+      }
+    } catch (error) {
+      console.error("Reconnect failed:", error);
+      throw error;
+    } finally {
+      setConnecting(false);
+    }
+  }, [connected, meshConnect, connect, connectSocial]);
+
+  // Auto-reconnection on page load
   useEffect(() => {
     if (typeof window === "undefined") return;
 
@@ -223,10 +309,26 @@ export function WalletContextProvider({ children }: { children: ReactNode }) {
         localStorage.getItem(STORAGE_KEY) ||
         sessionStorage.getItem(STORAGE_SESSION_KEY);
 
-      if (!stored) return;
+      if (!stored) {
+        // Check if NuFi extension is still enabled even without stored preference
+        const nufiEnabled = await checkNufiExtensionEnabled();
+        if (nufiEnabled) {
+          console.log(
+            "NuFi extension detected and enabled, auto-reconnecting..."
+          );
+          try {
+            await meshConnect("nufi");
+            setIsSocialLogin(false);
+          } catch (error) {
+            console.log("Auto-reconnect to NuFi failed:", error);
+          }
+        }
+        return;
+      }
 
       const wasSocial = localStorage.getItem(SOCIAL_LOGIN_KEY) === "true";
 
+      // Handle NuFi SSO (social login)
       if (stored === "nufiSSO" && wasSocial) {
         try {
           const core = (await import("@nufi/dapp-client-core")).default;
@@ -237,12 +339,28 @@ export function WalletContextProvider({ children }: { children: ReactNode }) {
           await meshConnect("nufiSSO");
           setIsSocialLogin(true);
           return;
-        } catch {
+        } catch (error) {
+          console.log("Auto-reconnect to NuFi SSO failed:", error);
           localStorage.removeItem(STORAGE_KEY);
           localStorage.removeItem(SOCIAL_LOGIN_KEY);
         }
       }
 
+      // Handle regular NuFi extension
+      if (stored === "nufi") {
+        const nufiEnabled = await checkNufiExtensionEnabled();
+        if (nufiEnabled) {
+          try {
+            await meshConnect("nufi");
+            setIsSocialLogin(false);
+            return;
+          } catch (error) {
+            console.log("Reconnect to NuFi failed:", error);
+          }
+        }
+      }
+
+      // Handle other wallets
       const installed: MeshWallet[] = BrowserWallet.getInstalledWallets();
       const exists = installed.some((w) => w.name === stored);
       if (!exists) {
@@ -253,7 +371,8 @@ export function WalletContextProvider({ children }: { children: ReactNode }) {
 
       try {
         await meshConnect(stored);
-      } catch {
+      } catch (error) {
+        console.log("Auto-reconnect failed:", error);
         localStorage.removeItem(STORAGE_KEY);
         sessionStorage.removeItem(STORAGE_SESSION_KEY);
       }
@@ -275,6 +394,7 @@ export function WalletContextProvider({ children }: { children: ReactNode }) {
       connect,
       connectSocial,
       disconnect,
+      reconnect,
       refreshWalletData,
     }),
     [
@@ -289,6 +409,7 @@ export function WalletContextProvider({ children }: { children: ReactNode }) {
       connect,
       connectSocial,
       disconnect,
+      reconnect,
       refreshWalletData,
     ]
   );
