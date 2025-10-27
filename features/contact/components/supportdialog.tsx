@@ -107,7 +107,7 @@ export default function SupportDialog({
                       Your issues have not been solved after checking the FAQ
                       section?
                     </h3>
-                    <p className="text-gray-600 text-sm sm:text-[15px] mb-4 sm:mb-5">
+                    <p className=" text-sm sm:text-base mb-4 sm:mb-5">
                       If yes, our support team is here to help. Send us a
                       message describing your concern, and we'll get back to you
                       as soon as possible.
@@ -186,8 +186,8 @@ export default function SupportDialog({
                     </div>
 
                     <div className="flex justify-center gap-3 pt-2">
-                      <CustomButton type="submit">
-                        {isPending ? "Processing" : "Send"}
+                      <CustomButton className="!h-10" isLoading={isPending} type="submit">
+                  Send
                       </CustomButton>
                     </div>
                   </form>
