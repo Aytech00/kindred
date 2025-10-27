@@ -150,6 +150,7 @@ export default function SupportDialog({
                         name="name"
                         type="text"
                         className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+                        style={{ fontSize: "16px" }}
                         required
                       />
                     </div>
@@ -162,6 +163,7 @@ export default function SupportDialog({
                         name="email"
                         type="email"
                         className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+                        style={{ fontSize: "16px" }}
                         required
                       />
                     </div>
@@ -178,6 +180,7 @@ export default function SupportDialog({
                         name="message"
                         rows={4}
                         className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+                        style={{ fontSize: "16px" }}
                         required
                       />
                     </div>
