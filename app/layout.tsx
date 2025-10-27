@@ -54,14 +54,13 @@ export default function RootLayout({
             <MeshWrapper>
               <NuFiProvider>
                 <WalletContextProvider>
-                  <LayoutContextProvider>
+              
                     <ModalContextProvider>
                       <main className="flex-1">{children}</main>
                       <Toaster />
-                      <WalletDisconnectToggle />
+                      <WalletDisconnectToggle offsetTopPx="80" />
                       <GlobalModals />
                     </ModalContextProvider>
-                  </LayoutContextProvider>
                 </WalletContextProvider>
               </NuFiProvider>
             </MeshWrapper>

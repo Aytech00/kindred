@@ -3,6 +3,7 @@
 
 import React from "react";
 import { Copy } from "lucide-react";
+import CustomButton from "@/shared/ui/custom/button";
 
 const STORE_SEARCH = {
   ios: (query: string) =>
@@ -30,17 +31,14 @@ export default function MobileNoWalletCard() {
   };
 
   return (
-      <div className="rounded-xl border p-4 space-y-4">
-          
+    <div className="rounded-xl border p-4 space-y-4">
       <div className="space-y-1">
         <h3 className="font-semibold">No mobile wallet detected</h3>
         <p className="text-sm text-muted-foreground">
           On mobile, CIP-30 wallets are injected inside the wallet’s in-app
-          browser. Open this site from your wallet app, or install a Cardano
-          wallet below.
+          browser. Open this site from your wallet app.
         </p>
-          </div>
-          
+      </div>
 
       <div className="flex items-center justify-between gap-2 rounded-lg bg-muted p-2">
         <code className="text-xs break-all">{url}</code>
@@ -82,10 +80,22 @@ export default function MobileNoWalletCard() {
         ))}
       </div> */}
 
-      <p className="text-xs text-muted-foreground">
-        Tip: In your wallet app, open the in-app browser and navigate to this
+      {/* <p className="text-xs text-muted-foreground">
+     In your wallet app, open the in-app browser and navigate to this
         URL to connect.
-      </p>
+      </p> */}
+
+      {/* <CustomButton
+        className="w-full"
+        isLoading={connecting || autoReconnecting}
+        onClick={handleSocialLogin}
+        disabled={isDisabled}
+      >
+        <img className="w-9" src={nufilogo.src} alt="" />
+        {isSocialLogin && socialLoginInfo?.email
+          ? `Continue as ${socialLoginInfo.email.split("@")[0]}`
+          : "NuFi Login"}
+      </CustomButton> */}
     </div>
   );
 }

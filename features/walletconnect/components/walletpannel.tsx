@@ -84,28 +84,23 @@ export const ConnectPanel: React.FC<ConnectPanelProps> = ({ onSuccess }) => {
     checkPreviousConnection();
   }, [reconnect, connected, onSuccess]);
 
-  const handleWalletSelect = (name: string) => {
+  const handleWalletSelect = async (name: string) => {
     setSelectedWallet(name);
-  };
-
-  const handleProceed = async () => {
-    if (!selectedWallet) {
-      alert("Please select a wallet first");
-      return;
-    }
 
     try {
-      await connect(selectedWallet, "local");
+      await connect(name, "local"); 
       if (onSuccess) {
         onSuccess();
       }
     } catch (error) {
       console.error("Connection failed:", error);
       alert(
-        `Failed to connect to ${selectedWallet}. Check wallet permissions.`
+        `Failed to connect to ${name}. Check wallet permissions.` 
       );
     }
   };
+
+
 
   const handleSocialLogin = async () => {
     if (connecting || autoReconnecting) return;
@@ -137,7 +132,6 @@ export const ConnectPanel: React.FC<ConnectPanelProps> = ({ onSuccess }) => {
      
       <WalletSelectionCard
         available={available}
-        handleProceed={handleProceed}
         mobile={mobile}
         selectedWallet={selectedWallet}
         setSelectedWallet={setSelectedWallet}

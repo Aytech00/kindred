@@ -14,11 +14,11 @@ type SelectionCardProps = {
   available: MeshWallet[];
   setSelectedWallet: React.Dispatch<React.SetStateAction<string | null>>;
   handleWalletSelect: (name: string) => void;
-  handleProceed: () => void;
+  handleProceed?: () => void;
   handleSocialLogin: () => void;
   mobile: boolean;
-  socialLoginInfo: { email?: string; provider?: string } | null; // ADD THIS
-  isSocialLogin: boolean; // ADD THIS
+  socialLoginInfo: { email?: string; provider?: string } | null; 
+  isSocialLogin: boolean; 
 };
 
 export default function WalletSelectionCard({

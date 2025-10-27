@@ -10,7 +10,7 @@ import CustomButton from "@/shared/ui/custom/button";
 
 type Props = {
   /** Extra pixels below the nav (useful if your nav height changes) */
-  offsetTopPx?: number; // default 64
+  offsetTopPx?: number | string; // default 64
 };
 
 export default function WalletDisconnectToggle({ offsetTopPx = 72 }: Props) {
@@ -47,10 +47,11 @@ export default function WalletDisconnectToggle({ offsetTopPx = 72 }: Props) {
           type="button"
           onClick={handleDisconnect}
           className="
-            !bg-[#DC2626]!hover:bg-red-700
+          !bg-[#DC2626]
+            !hover:bg-red-700
             text-white font-semibold
             text-base sm:text-lg
-            px-4 sm:px-6 py-3
+            px-4 sm:px-5 py-3
             focus:outline-none focus:ring-2 focus:ring-red-400
             transition-colors
           "
