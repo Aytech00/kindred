@@ -26,7 +26,7 @@ export default function WalletDisconnectToggle({ offsetTopPx = 72 }: Props) {
   }, [openId, isOpen, connected]);
 
   const handleDisconnect = () => {
-    disconnect(true); 
+    disconnect(true);
   };
 
   if (!connected || !showDisconnectBtn) {
@@ -47,7 +47,7 @@ export default function WalletDisconnectToggle({ offsetTopPx = 72 }: Props) {
           type="button"
           onClick={handleDisconnect}
           className="
-            !bg-red-600 !hover:bg-red-700
+            !bg-[#DC2626]!hover:bg-red-700
             text-white font-semibold
             text-base sm:text-lg
             px-4 sm:px-6 py-3

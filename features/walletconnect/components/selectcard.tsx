@@ -6,7 +6,7 @@ import WalletRow from "./walletrow";
 import type { Wallet as MeshWallet } from "@meshsdk/core";
 import MobileNoWalletCard from "./mobilewalletcard";
 import CustomButton from "@/shared/ui/custom/button";
-
+import nufilogo from "../../../public/nufilogo2.png"
 type SelectionCardProps = {
   connecting: boolean;
   autoReconnecting: boolean; // ADD THIS
@@ -40,7 +40,7 @@ export default function WalletSelectionCard({
     <div className="">
      
 
-      <div className="mb-20">
+      <div className="mb-24">
         <div className="">
           {available.length === 0 ? (
             mobile ? (
@@ -67,7 +67,7 @@ export default function WalletSelectionCard({
       </div>
 
       <div className="">
-        <div className="mb-3">
+        {/* <div className="mb-5">
           {available.length > 0 && (
             <div className="flex flex-col items-center gap-3">
               <button
@@ -90,6 +90,12 @@ export default function WalletSelectionCard({
               </button>
             </div>
           )}
+        </div> */}
+
+        <div className="mb-4">
+          <h4 className="text-black font-medium">
+            New To Wallet ?
+          </h4>
         </div>
 
         <CustomButton
@@ -98,6 +104,7 @@ export default function WalletSelectionCard({
           onClick={handleSocialLogin}
           disabled={isDisabled}
         >
+          <img className="w-9" src={nufilogo.src} alt="" />
           {isSocialLogin && socialLoginInfo?.email
             ? `Continue as ${socialLoginInfo.email.split("@")[0]}`
             : "NuFi Login"}
