@@ -43,23 +43,24 @@ export default function WalletConnectDialog({
           w-full
           sm:w-[300px]
           fixed 
+          bg-[#FFFFFF]
           left-0 right-0 top-0
-          sm:left-auto sm:right-12 sm:top-1/2 sm:-translate-y-[340px]
+          sm:left-auto sm:right-12 sm:top-1/2 sm:-translate-y-[344px]
           translate-x-0 translate-y-0
           rounded-none sm:rounded-b-4xl
-          max-w-full sm:max-w-[300px]
-          h-[360px] sm:h-[350px]
+          max-w-full sm:max-w-[310px]
+          h-[380px] sm:h-[385px]
           p-1 overflow-hidden
           flex flex-col
           m-0
           rounded-b-4xl
         "
       >
-        <DialogHeader className="px-4 text-left py-3 shrink-0">
-          <DialogTitle>Connect wallet</DialogTitle>
+        <DialogHeader className="px-4 text-left py-2 shrink-0">
+          <DialogTitle className="font-medium text-[16px]">Connect wallet</DialogTitle>
         </DialogHeader>
 
-        <div className="min-h-0 flex-1 overflow-y-auto px-4 pb-4">
+        <div className="min-h-0 flex-1 overflow-y-auto px-3 pb-4">
           <ConnectPanel onSuccess={handleSuccess} />
         </div>
       </DialogContent>

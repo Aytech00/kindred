@@ -2,17 +2,37 @@
 
 import groq from "groq";
 
-// Singleton homepage
-export const homeQuery = groq`*[_type == "home"][0]{
-  hero,
-  sections,
-  seo
-}`;
-
-// Generic CMS page by slug
-export const pageBySlugQuery = groq`*[_type == "page" && slug.current == $slug][0]{
-  title,
-  "slug": slug.current,
-  sections,
-  seo
+export const homePageQuery = groq`*[_type == "homePage"][0]{
+  hero{
+    title,
+    span,
+    subtitle,
+    "buttonLabel": primaryButton.label,
+    "buttonHref": primaryButton.href
+  },
+  "explainerItems": explainerItems[]{
+    eyebrow,
+    title,
+    body,
+    lead,
+    list,
+    showCircle,
+    circlePosition,
+    "showButton": coalesce(showButton, defined(button.label)),
+    "buttonLabel": button.label,
+    "buttonHref": button.href
+  },
+  "explainerTwo": {
+    title,
+    intro,
+    sideTitle,
+    heading,
+    items[]{ title, body }
+  },
+  cta{
+    title,
+    subtitle,
+    "buttonLabel": button.label,
+    "buttonHref": button.href
+  }
 }`;
