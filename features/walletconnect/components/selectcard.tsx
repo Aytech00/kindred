@@ -64,7 +64,7 @@ export default function WalletSelectionCard({
               </div>
             )
           ) : (
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-3 gap-x-3">
               {wallets.map((w) => {
                 const isSelected = selectedWallet === w.id;
                 return (
